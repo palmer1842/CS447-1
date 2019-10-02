@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{parskip}
+
+\title{Project 1 Design Document}
+\author{Jake Palmer}
+\date{September 18, 2019}
+
+\begin{document}
+
+\maketitle
+\title{\begin{center} \large{Cops and Robbers} \end{center}}
+
+\section{Basic Idea} \label{intro}
+\textit{Cops and Robbers} is a top down driving game with two game modes. In one, the player controls the robber and must evade the cops to reach the safe house. In the other mode the roles are reversed, and the player controls one of the cops who must pursue the robber. In both game modes the enemy driver will actively pursue or flee from the player. The game will also include other neutral drivers who travel on set paths and act as obstacles. Crashing into a neutral driver will result in a penalty or a game over, depending on the severity of the crash.
+
+\par The map will be grid based and somewhat maze like, so a city/urban setting makes the most sense. All roads will be two lanes wide, with one lane for each direction of travel, and players can drive in the wrong lane with no penalty. As the robber, the player wants to avoid being seen, so taking a shortcut through an alleyway or losing his pursuers in a series of turns should make for exciting game play.
+
+\par In many ways this game is similar to Pac-Man. The player moves in a maze avoiding enemies and trying to reach a goal. The main differences are the addition of other active entities (the neutral drivers), the limited mobility of a car compared to Pac-Man, and the ability to play as a cop (like a Pac-Man ghost).
+
+\section{UI}
+The game will include four distinct screens:
+
+\subsection{Title Screen}
+On this screen a logo and possibly simple artwork will be displayed. The player will be able to select from two options, foremost of which being to begin the game. The second option will be a selector for the game mode.
+
+\subsection{Launch Screen}
+This screen is transitioned to from the Title Screen when the player begins the game. It is a static screen that shows artwork and text to establish a basic background story. It will also inform the player of their goal, either to reach the safe house and evade the cop, or to stop the robber. The screen will only be displayed for a few seconds before transitioning to the game screen.
+
+\subsection{Game Screen}
+This is where the game is played. A map of the city is displayed, with the cops and the robber in their respective starting positions. A message will flash on the screen telling the player to start driving, and the game will begin. In one area of the screen a small window will display relevant stats, such as game play time and number of collisions. The player will control their vehicle with WASD. The controls will be relative to the car, so pressing 'W' when the car is facing south will cause the car to go south, or down on the screen.
+
+\subsection{Win/Loss Screen}
+Once the game is over, a win or loss screen will be displayed, depending on the outcome of the game. The screen will display the players final score.
+
+\section{Entities}
+
+\subsection{Cop/Robber}
+The game will always be played with one robber and three cops. The player can choose to play as either entity, and their basic objectives were discussed in section \ref{intro}. 
+
+\par The cop AI will use pathfinding to drive towards the robber (the player) until a collision is made. A cop is restricted to driving only on roadways designated for vehicle traffic, and must navigate around obstacles such as neutral drivers. Similar to the ghosts in Pac-Man, the cops may not all take ideal approaches to catching the player. By doing so they won't get bunched up, and won't appear to be too "perfect" in their pursuit.
+
+\par The robber AI will use pathfinding to drive towards the safe house, while also avoiding the cops. Unlike the cops, the robber can drive in designated off-road areas. If it reaches the safe house while in the line of sight of a cop, it will prefer to drive away from the safe house for a set amount of time before trying again.
+
+\par Both the cops and the robber will have constrained movement on the grid, with smooth animation. Since they are cars, they can only move forward and backwards from a stopped position. Once moving forward, they can move left and right. Attempting to move left or right will cause the player to turn at an intersection, change lanes, or do nothing.
+
+\subsection{Neutral Drivers} \label{neutraldrivers}
+Other vehicles will exist on the map besides the cops and the robber. These entities, called neutral drivers, take preset paths through the city. Their driving patterns are simple and follow the grid based layout of the map. Like the cops and the robber, these vehicles must be in motion to turn.
+
+\subsection{Static Obstacles}
+These entities will be items placed on the map that the robber or a cop could collide with. Trees, dumpsters, and roadblocks are potential static obstacles. Exactly how these objects will be placed, either intentionally or at random, is yet to be determined.
+
+\section{Sticking Points}
+Some potential sticking points are as follows:
+\begin{enumerate}
+    \item The robber AI must balance the goal of reaching the safe house with evading the cops.
+    \item The cop AI must be designed in such a way that each cop can act independently. That way the player can take control of one cop.
+    \item The neutral drivers will be tricky to get right, since the player and computer will have to navigate around them while they're in motion.
+\end{enumerate}
+
+Overall I feel good about my plan, although I am worried about creating the two distinct AI's as outlined here. If necessary, they could be simplified. For example the robber AI could ignore the line of sight condition. In the worst case the cop game mode could be eliminated entirely, although then I would need to devise and argue for complexity comparable to state based behavior.
+
+\par I'm also concerned about how much work will need to be done with animation to make the cars move in believable ways, since I don't want to spend to much time on that area.
+
+\section{High Bar Items}
+
+If the AI for the cops and the robber function properly, they could theoretically play the game on their own. It would be fun to have "hidden" game modes where the player watches the computer play, or possibly drives a neutral car around while the chase plays out around them.
+
+\par Adding the ability to perform "stunts", like a handbrake turn to quickly change direction, would add another level of complexity to the gameplay experience.
+
+\newpage
+
+\section{Low Bar Checklist}
+
+\begin{enumerate}
+    \item \textbf{Grid based road system} \\
+    The map will have an underlying grid structure with predefined roadways. Entities will travel only along these roadways in the four cardinal directions.
+    \item \textbf{Vehicle Entity} \\
+    Cars in the game will be able to move forwards and backwards, and only change lanes/turn while moving forward.
+    \item \textbf{Robber game mode} \\
+    The player can control a "robber" vehicle and drive freely around the map. Cops pursue the player, and the player wins if they reach their safe house.
+    \item \textbf{Cop game mode} \\
+    The player can control a "cop" vehicle and drive freely around the map. The robber flees from the cop (both player and AI controlled) and drives towards the safe house. The player wins if they catch (collide with) the robber.
+    \item \textbf{Neutral vehicles and obstacles} \\
+    Vehicle entities with preset paths will drive around the map. They will not respond to the cop or robber in any way. There will also be stationary obstacles. Colliding with either will penalize the player.
+    \item \textbf{Scoring system} \\
+    The game will determine a score for the player based on some combination of the time taken, number of collisions, line of sight condition check, and possibly other factors.
+\end{enumerate}
+
+\subsection*{Complexity Argument (vs. Pac-Man)}
+Constrained movement is present in much the same way that it is in Pac-Man: the game world is grid based and maze-like.
+\par State based behavior is present in the ability to select between two game modes, where the player has different objectives and win conditions. The robber also changes state when near the safe house but within a cop's line of sight.
+\par Path finding is needed for both the robber and cop AI. The cops in particular behave in the same way as the ghosts in Pac-Man. They attempt to catch the robber with out bunching up or being unbeatable. The robber also has complex path finding with his two competing objectives (reach the safe house and evade the cops).
+\par Finally collision detection is clearly present. The robber's primary objective is to "collide" with the safe house, and the cop's objective is to "collide" with the robber. Collisions with neutral vehicles and obstacles are also detected.
+
+\end{document}
+
