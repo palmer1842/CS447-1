@@ -32,6 +32,8 @@ public class CopsAndRobbers extends StateBasedGame {
 			Play as Cop
 			Win/Lose
 		 */
+		addState(new PlayState());
+
 		ResourceManager.loadImage(LAND_RSC);
 		ResourceManager.loadImage(ROAD_RSC);
 	}
