@@ -1,4 +1,5 @@
 import jig.Entity;
+import jig.ResourceManager;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -10,6 +11,11 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author Jake Palmer
  */
 public class CopsAndRobbers extends StateBasedGame {
+
+	static final String LAND_RSC = "resource/LandTile.png";
+	static final String ROAD_RSC = "resource/RoadTile.png";
+
+	Tile[][] tile = new Tile[24][16];
 
 	public CopsAndRobbers(String name) {
 		super(name);
@@ -26,13 +32,17 @@ public class CopsAndRobbers extends StateBasedGame {
 			Play as Cop
 			Win/Lose
 		 */
+		addState(new PlayState());
+
+		ResourceManager.loadImage(LAND_RSC);
+		ResourceManager.loadImage(ROAD_RSC);
 	}
 
 	public static void main(String[] args) {
 		AppGameContainer app;
 		try {
 			app = new AppGameContainer(new CopsAndRobbers("Cops and Robbers"));
-			app.setDisplayMode(800, 600, false);
+			app.setDisplayMode(1200, 800, false);
 			app.setVSync(true);
 			app.start();
 		} catch (SlickException e) {
