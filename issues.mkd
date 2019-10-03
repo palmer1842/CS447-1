@@ -1,0 +1,7 @@
+## Resolved Issues ##
+
+## Open Issues ##
+
+- **1** Create basic runnable game application
+- **2** Add basic tiles to build grid
+- **3** Add vehicle entity
