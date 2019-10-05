@@ -6,3 +6,11 @@
 
 ## Open Issues ##
 
+- Implement discrete vehicle movement on the grid
+- Add property to roads to restrict movement
+- Add various road types
+- Add title screen
+- Add launch screen
+- Add win/lose screen
+- Add second vehicle
+- Add collision detection between vehicles
