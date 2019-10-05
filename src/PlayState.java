@@ -1,5 +1,6 @@
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -45,7 +46,7 @@ public class PlayState extends BasicGameState {
 			y += 50;
 		}
 
-		car = new Vehicle(125, 125);
+		car = new Vehicle(1, 1);
 	}
 
 	@Override
@@ -62,7 +63,20 @@ public class PlayState extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int i) throws SlickException {
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		Input input = container.getInput();
 
+		if (input.isKeyDown(Input.KEY_W)) {
+			car.setLocation(car.getxLocation(), car.getyLocation() - 1);
+		}
+		if (input.isKeyDown(Input.KEY_S)) {
+			car.setLocation(car.getxLocation(), car.getyLocation() + 1);
+		}
+		if (input.isKeyDown(Input.KEY_A)) {
+			car.setLocation(car.getxLocation() - 1, car.getyLocation());
+		}
+		if (input.isKeyDown(Input.KEY_D)) {
+			car.setLocation(car.getxLocation() + 1, car.getyLocation());
+		}
 	}
 }

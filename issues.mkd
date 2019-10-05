@@ -6,7 +6,7 @@
 
 ## Open Issues ##
 
-- Implement discrete vehicle movement on the grid
+- **4** Implement discrete vehicle movement on the grid
 - Add property to roads to restrict movement
 - Add various road types
 - Add title screen
