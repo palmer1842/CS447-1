@@ -23,6 +23,8 @@ public class PlayState extends BasicGameState {
 						 { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
 						 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }};
 
+	Vehicle car;
+
 	@Override
 	public int getID() {
 		return 0;
@@ -42,6 +44,8 @@ public class PlayState extends BasicGameState {
 			x = 25;
 			y += 50;
 		}
+
+		car = new Vehicle(125, 125);
 	}
 
 	@Override
@@ -53,6 +57,8 @@ public class PlayState extends BasicGameState {
 				cap.tile[j][i].render(g);
 			}
 		}
+
+		car.render(g);
 	}
 
 	@Override
