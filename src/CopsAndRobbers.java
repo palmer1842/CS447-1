@@ -14,6 +14,7 @@ public class CopsAndRobbers extends StateBasedGame {
 
 	static final String LAND_RSC = "resource/LandTile.png";
 	static final String ROAD_RSC = "resource/RoadTile.png";
+	static final String VEHICLE_RSC = "resource/Vehicle.png";
 
 	Tile[][] tile = new Tile[24][16];
 
@@ -36,6 +37,7 @@ public class CopsAndRobbers extends StateBasedGame {
 
 		ResourceManager.loadImage(LAND_RSC);
 		ResourceManager.loadImage(ROAD_RSC);
+		ResourceManager.loadImage(VEHICLE_RSC);
 	}
 
 	public static void main(String[] args) {
