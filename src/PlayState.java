@@ -1,5 +1,7 @@
+import jig.Vector;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -45,7 +47,7 @@ public class PlayState extends BasicGameState {
 			y += 50;
 		}
 
-		car = new Vehicle(125, 125);
+		car = new Vehicle(1, 1);
 	}
 
 	@Override
@@ -62,7 +64,32 @@ public class PlayState extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int i) throws SlickException {
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		// OUTILNE
+		// if at center
+		// 	getInput
+		// 	plan
+		// else
+		// 	drive(plan)
 
+		if (car.isCentered()) {
+			Input input = container.getInput();
+			if (input.isKeyDown(Input.KEY_W)) {
+				car.setVelocity(new Vector(0f, -.2f));
+			}
+			else if (input.isKeyDown(Input.KEY_S)) {
+				car.setVelocity(new Vector(0f, .2f));
+			}
+			else if (input.isKeyDown(Input.KEY_A)) {
+				car.setVelocity(new Vector(-.2f, 0f));
+			}
+			else if (input.isKeyDown(Input.KEY_D)) {
+				car.setVelocity(new Vector(.2f, 0f));
+			}
+			else {
+				car.setVelocity(new Vector(0, 0));
+			}
+		}
+		car.drive(delta);
 	}
 }
