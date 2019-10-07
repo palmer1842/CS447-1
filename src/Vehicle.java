@@ -1,14 +1,17 @@
 import jig.Entity;
 import jig.ResourceManager;
+import jig.Vector;
 
 public class Vehicle extends Entity {
 
+	Vector velocity;
 	int xLocation;
 	int yLocation;
 
 	Vehicle(int x, int y) {
 		addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.VEHICLE_RSC));
 
+		velocity = new Vector(0, 0);
 		setLocation(x, y);
 	}
 
@@ -32,11 +35,33 @@ public class Vehicle extends Entity {
 		setPosition((x - 1) * 50 + 25, (y - 1) * 50 + 25);
 	}
 
+	/**
+	 * Set the velocity of the Vehicle entity
+	 *
+	 * @param v a JIG Vector object
+	 */
+	void setVelocity(Vector v) {
+		velocity = v;
+	}
 
+	/**
+	 * Check to see if the Vehicle is in the center of a tile.
+	 * Allows 2 pixels of wiggle room to account for instances where the car doesn't render in the exact center.
+	 *
+	 * @return true if the car is centered
+	 */
+	boolean isCentered() {
+		return ((getX() % 25) <= 2 && (getX() % 25) >= -2 &&
+				(getY() % 25) <= 2 && (getY() % 25) >= -2);
+	}
+
+	/**
+	 * Translate the vehicle according to its current velocity.
+	 *
+	 * @param delta the time in milliseconds since the last call to update()
+	 */
 	void drive(int delta) {
-		// translate(velocity.scale(delta)); // fluid, smooth motion. Why would you ever want that?
-
-		// abrupt skips along the grid, that's a real mans video game
+		translate(velocity.scale(delta));
 	}
 
 }

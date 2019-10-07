@@ -3,10 +3,11 @@
 - **1** Create basic runnable game application
 - **2** Add basic tiles to build grid
 - **3** Add vehicle entity
+- **4** Implement discrete vehicle movement on the grid
+
 
 ## Open Issues ##
 
-- **4** Implement discrete vehicle movement on the grid
 - Add property to roads to restrict movement
 - Add various road types
 - Add title screen

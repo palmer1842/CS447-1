@@ -1,3 +1,4 @@
+import jig.Vector;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -64,19 +65,31 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		Input input = container.getInput();
+		// OUTILNE
+		// if at center
+		// 	getInput
+		// 	plan
+		// else
+		// 	drive(plan)
 
-		if (input.isKeyDown(Input.KEY_W)) {
-			car.setLocation(car.getxLocation(), car.getyLocation() - 1);
+		if (car.isCentered()) {
+			Input input = container.getInput();
+			if (input.isKeyDown(Input.KEY_W)) {
+				car.setVelocity(new Vector(0f, -.2f));
+			}
+			else if (input.isKeyDown(Input.KEY_S)) {
+				car.setVelocity(new Vector(0f, .2f));
+			}
+			else if (input.isKeyDown(Input.KEY_A)) {
+				car.setVelocity(new Vector(-.2f, 0f));
+			}
+			else if (input.isKeyDown(Input.KEY_D)) {
+				car.setVelocity(new Vector(.2f, 0f));
+			}
+			else {
+				car.setVelocity(new Vector(0, 0));
+			}
 		}
-		if (input.isKeyDown(Input.KEY_S)) {
-			car.setLocation(car.getxLocation(), car.getyLocation() + 1);
-		}
-		if (input.isKeyDown(Input.KEY_A)) {
-			car.setLocation(car.getxLocation() - 1, car.getyLocation());
-		}
-		if (input.isKeyDown(Input.KEY_D)) {
-			car.setLocation(car.getxLocation() + 1, car.getyLocation());
-		}
+		car.drive(delta);
 	}
 }
