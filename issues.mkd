@@ -8,7 +8,10 @@
 
 ## Open Issues ##
 
-- Add property to roads to restrict movement
+- **5** Rotate vehicle to match direction of travel 
+- **6** Add property to roads to restrict movement
+- Implement 'car-like' controls with directions relative to Vehicle
+- Implement 'car-like' behavior with acceleration
 - Add various road types
 - Add title screen
 - Add launch screen
