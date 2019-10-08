@@ -73,7 +73,7 @@ public class PlayState extends BasicGameState {
 		// else
 		// 	drive(plan)
 
-		if (car.isCentered()) {
+		if (car.isCentered(cap.tile[car.getxLocation()][car.getyLocation()])) {
 			Input input = container.getInput();
 			if (input.isKeyDown(Input.KEY_W) &&
 				cap.tile[car.getxLocation()][car.getyLocation() - 1].getType() == Tile.ROAD_TYPE) {
