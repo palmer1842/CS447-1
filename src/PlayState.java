@@ -65,6 +65,7 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		CopsAndRobbers cap = (CopsAndRobbers)game;
 		// OUTILNE
 		// if at center
 		// 	getInput
@@ -74,16 +75,20 @@ public class PlayState extends BasicGameState {
 
 		if (car.isCentered()) {
 			Input input = container.getInput();
-			if (input.isKeyDown(Input.KEY_W)) {
+			if (input.isKeyDown(Input.KEY_W) &&
+				cap.tile[car.getxLocation()][car.getyLocation() - 1].getType() == Tile.ROAD_TYPE) {
 				car.setVelocity(new Vector(0f, -.2f));
 			}
-			else if (input.isKeyDown(Input.KEY_S)) {
+			else if (input.isKeyDown(Input.KEY_S) &&
+				cap.tile[car.getxLocation()][car.getyLocation() + 1].getType() == Tile.ROAD_TYPE) {
 				car.setVelocity(new Vector(0f, .2f));
 			}
-			else if (input.isKeyDown(Input.KEY_A)) {
+			else if (input.isKeyDown(Input.KEY_A) &&
+				cap.tile[car.getxLocation() - 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
 				car.setVelocity(new Vector(-.2f, 0f));
 			}
-			else if (input.isKeyDown(Input.KEY_D)) {
+			else if (input.isKeyDown(Input.KEY_D) &&
+				cap.tile[car.getxLocation() + 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
 				car.setVelocity(new Vector(.2f, 0f));
 			}
 			else {

@@ -21,11 +21,11 @@ public class Vehicle extends Entity {
 	}
 
 	int getxLocation() {
-		return (int)((getX() - 25) / 50) + 1;
+		return (int)((getX() - 25) / 50);
 	}
 
 	int getyLocation() {
-		return (int)((getY() - 25) / 50) + 1;
+		return (int)((getY() - 25) / 50);
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class Vehicle extends Entity {
 	 * @param y y-coordinate on the tile-grid
 	 */
 	void setLocation(int x, int y) {
-		setPosition((x - 1) * 50 + 25, (y - 1) * 50 + 25);
+		setPosition((x) * 50 + 25, (y) * 50 + 25);
 	}
 
 	/**
