@@ -10,11 +10,14 @@
 
 ## Open Issues ##
 
-- Implement 'car-like' controls with directions relative to Vehicle
-- Implement 'car-like' behavior with acceleration
+- **7** Fix grid movement to be only on tile centers
+- **8** Implement 'car-like' controls with directions relative to
+  Vehicle
+- **9** Implement 'car-like' behavior with acceleration
 - Add various road types
 - Add title screen
 - Add launch screen
 - Add win/lose screen
 - Add second vehicle
 - Add collision detection between vehicles
+- Add smooth animation to vehicle maneuvers
