@@ -4,11 +4,11 @@
 - **2** Add basic tiles to build grid
 - **3** Add vehicle entity
 - **4** Implement discrete vehicle movement on the grid
+- **5** Rotate vehicle to match direction of travel 
 
 
 ## Open Issues ##
 
-- **5** Rotate vehicle to match direction of travel 
 - **6** Add property to roads to restrict movement
 - Implement 'car-like' controls with directions relative to Vehicle
 - Implement 'car-like' behavior with acceleration
