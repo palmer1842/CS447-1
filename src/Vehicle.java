@@ -6,8 +6,6 @@ public class Vehicle extends Entity {
 
 	Vector velocity;
 	int direction;
-	int xLocation;
-	int yLocation;
 
 	static final int NORTH = 0;
 	static final int EAST = 1;
@@ -23,11 +21,11 @@ public class Vehicle extends Entity {
 	}
 
 	int getxLocation() {
-		return xLocation;
+		return (int)((getX() - 25) / 50);
 	}
 
 	int getyLocation() {
-		return yLocation;
+		return (int)((getY() - 25) / 50);
 	}
 
 	/**
@@ -37,9 +35,7 @@ public class Vehicle extends Entity {
 	 * @param y y-coordinate on the tile-grid
 	 */
 	void setLocation(int x, int y) {
-		xLocation = x;
-		yLocation = y;
-		setPosition((x - 1) * 50 + 25, (y - 1) * 50 + 25);
+		setPosition((x) * 50 + 25, (y) * 50 + 25);
 	}
 
 	/**
