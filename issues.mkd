@@ -11,9 +11,10 @@
 
 ## Open Issues ##
 
-- **8** Implement 'car-like' controls with directions relative to
+- **8** Smooth movement of Vehicle between tiles
+- **9** Implement 'car-like' controls with directions relative to
   Vehicle
-- **9** Implement 'car-like' behavior with acceleration
+- **10** Implement 'car-like' behavior with acceleration
 - Add various road types
 - Add title screen
 - Add launch screen
