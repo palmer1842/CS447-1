@@ -110,8 +110,12 @@ public class Vehicle extends Entity {
 	 * @return true if the car is centered
 	 */
 	boolean isCentered(Tile tile) {
-		 return (getX() <= tile.getX() + 2 && getX() >= tile.getX() - 2 &&
+		return (getX() <= tile.getX() + 2 && getX() >= tile.getX() - 2 &&
 			 getY() <= tile.getY() + 2 && getY() >= tile.getY() - 2);
+	}
+
+	void reset() {
+		setLocation(getxLocation(), getyLocation());
 	}
 
 	/**
