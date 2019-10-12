@@ -76,30 +76,54 @@ public class PlayState extends BasicGameState {
 
 		if (car.isCentered(cap.tile[car.getxLocation()][car.getyLocation()])) {
 			Input input = container.getInput();
-			if (input.isKeyDown(Input.KEY_W) &&
-				cap.tile[car.getxLocation()][car.getyLocation() - 1].getType() == Tile.ROAD_TYPE) {
-				car.setVelocity(new Vector(0f, -speed));
-				car.reset();
+
+			if (input.isKeyDown(Input.KEY_W) && car.inMotion()) {
+				if (input.isKeyDown(Input.KEY_A) &&
+					cap.tile[car.getxLocation() - 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
+					// turn left
+				}
+				else if (input.isKeyDown(Input.KEY_D) &&
+					cap.tile[car.getxLocation() + 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
+					// turn right
+				}
 			}
-			else if (input.isKeyDown(Input.KEY_S) &&
+			else if (input.isKeyDown(Input.KEY_W)) {
+				// accelerate
+			}
+			else if (input.isKeyDown(Input.KEY_S) && !car.inMotion() &&
 				cap.tile[car.getxLocation()][car.getyLocation() + 1].getType() == Tile.ROAD_TYPE) {
-				car.setVelocity(new Vector(0f, speed));
-				car.reset();
-			}
-			else if (input.isKeyDown(Input.KEY_A) &&
-				cap.tile[car.getxLocation() - 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
-				car.setVelocity(new Vector(-speed, 0f));
-				car.reset();
-			}
-			else if (input.isKeyDown(Input.KEY_D) &&
-				cap.tile[car.getxLocation() + 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
-				car.setVelocity(new Vector(speed, 0f));
-				car.reset();
+				// reverse
 			}
 			else {
 				car.setVelocity(new Vector(0, 0));
 				car.reset();
 			}
+
+
+//			if (input.isKeyDown(Input.KEY_W) &&
+//				cap.tile[car.getxLocation()][car.getyLocation() - 1].getType() == Tile.ROAD_TYPE) {
+//				car.setVelocity(new Vector(0f, -speed));
+//				car.reset();
+//			}
+//			else if (input.isKeyDown(Input.KEY_S) &&
+//				cap.tile[car.getxLocation()][car.getyLocation() + 1].getType() == Tile.ROAD_TYPE) {
+//				car.setVelocity(new Vector(0f, speed));
+//				car.reset();
+//			}
+//			else if (input.isKeyDown(Input.KEY_A) &&
+//				cap.tile[car.getxLocation() - 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
+//				car.setVelocity(new Vector(-speed, 0f));
+//				car.reset();
+//			}
+//			else if (input.isKeyDown(Input.KEY_D) &&
+//				cap.tile[car.getxLocation() + 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
+//				car.setVelocity(new Vector(speed, 0f));
+//				car.reset();
+//			}
+//			else {
+//				car.setVelocity(new Vector(0, 0));
+//				car.reset();
+//			}
 		}
 		car.drive(delta);
 	}
