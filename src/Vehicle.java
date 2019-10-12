@@ -110,8 +110,9 @@ public class Vehicle extends Entity {
 	 * @return true if the car is centered
 	 */
 	boolean isCentered(Tile tile) {
-		return (getX() <= tile.getX() + 2 && getX() >= tile.getX() - 2 &&
-			 getY() <= tile.getY() + 2 && getY() >= tile.getY() - 2);
+		float wiggle = 0f;
+		return (getX() <= tile.getX() + wiggle && getX() >= tile.getX() - wiggle &&
+			 getY() <= tile.getY() + wiggle && getY() >= tile.getY() - wiggle);
 	}
 
 	void reset() {
@@ -123,8 +124,16 @@ public class Vehicle extends Entity {
 	 *
 	 * @param delta the time in milliseconds since the last call to update()
 	 */
+
 	void drive(int delta) {
-		translate(velocity.scale(delta));
+		// TEMPORARY STATE
+		// With out considering delta, this function currently depends on the refresh rate of the game.
+		// If the game runs faster, it will play faster.
+		// If the frames aren't consistent, movement will be inconsistent.
+		// Not good! But good enough for the moment...
+
+		// translate(velocity.scale(delta));
+		translate(velocity);
 	}
 
 }
