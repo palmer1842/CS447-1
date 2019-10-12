@@ -115,6 +115,15 @@ public class Vehicle extends Entity {
 			 getY() <= tile.getY() + wiggle && getY() >= tile.getY() - wiggle);
 	}
 
+	/**
+	 * Check to see if the vehicle is in motion, i.e. has a non zero velocity.
+	 *
+	 * @return true if the car is in motion
+	 */
+	boolean inMotion() {
+		return velocity.length() != 0f;
+	}
+
 	void reset() {
 		setLocation(getxLocation(), getyLocation());
 	}
