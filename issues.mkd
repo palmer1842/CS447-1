@@ -11,7 +11,6 @@
 
 ## Open Issues ##
 
-- **8** Smooth movement of Vehicle between tiles
 - **9** Implement 'car-like' controls with directions relative to
   Vehicle
 - **10** Implement 'car-like' behavior with acceleration
@@ -22,3 +21,4 @@
 - Add second vehicle
 - Add collision detection between vehicles
 - Add smooth animation to vehicle maneuvers
+- **8** Smooth movement of Vehicle between tiles
