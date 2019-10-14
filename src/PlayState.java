@@ -78,24 +78,22 @@ public class PlayState extends BasicGameState {
 			Input input = container.getInput();
 
 			if (input.isKeyDown(Input.KEY_W) && car.inMotion()) {
-				if (input.isKeyDown(Input.KEY_A) &&
-					cap.tile[car.getxLocation() - 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
-					// turn left
+				if (input.isKeyDown(Input.KEY_A)) {
+					car.turnLeft();
 				}
-				else if (input.isKeyDown(Input.KEY_D) &&
-					cap.tile[car.getxLocation() + 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
-					// turn right
+				else if (input.isKeyDown(Input.KEY_D)) {
+					car.turnRight();
 				}
 			}
 			else if (input.isKeyDown(Input.KEY_W)) {
-				// accelerate
+				car.accelerate(speed);
 			}
 			else if (input.isKeyDown(Input.KEY_S) && !car.inMotion() &&
 				cap.tile[car.getxLocation()][car.getyLocation() + 1].getType() == Tile.ROAD_TYPE) {
-				// reverse
+				car.reverse(speed);
 			}
 			else {
-				car.setVelocity(new Vector(0, 0));
+				car.stop();
 				car.reset();
 			}
 
