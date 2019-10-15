@@ -7,12 +7,11 @@
 - **5** Rotate vehicle to match direction of travel 
 - **6** Add property to roads to restrict movement
 - **7** Fix grid movement to be only on tile centers
-
+- **9** Implement 'car-like' controls with directions relative to
+  Vehicle
 
 ## Open Issues ##
 
-- **9** Implement 'car-like' controls with directions relative to
-  Vehicle
 - **10** Implement 'car-like' behavior with acceleration
 - Add various road types
 - Add title screen
