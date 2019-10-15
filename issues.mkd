@@ -9,11 +9,11 @@
 - **7** Fix grid movement to be only on tile centers
 - **9** Implement 'car-like' controls with directions relative to
   Vehicle
+- **10** Add improved system to keep vehicle on roads using tile
+  metadata
 
 ## Open Issues ##
 
-- **10** Add improved system to keep vehicle on roads using tile
-  metadata
 - **11** Add second vehicle - cop and robber
 - **12** Add collision detection between vehicles 
 - Add title screen

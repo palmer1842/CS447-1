@@ -47,6 +47,16 @@ public class PlayState extends BasicGameState {
 			y += 50;
 		}
 
+		// assign neighbors to each tile in the grid
+		for (int i = 0; i < 16; i++) {
+			for (int j = 0; j < 24; j++) {
+				if (i > 0) { cap.tile[j][i].setNorthNeighbor(cap.tile[j][i - 1]); }
+				if (j < 23) { cap.tile[j][i].setEastNeighbor(cap.tile[j + 1][i]); }
+				if (i < 15) { cap.tile[j][i].setSouthNeighbor(cap.tile[j][i + 1]); }
+				if (j > 0) { cap.tile[j][i].setWestNeighbor(cap.tile[j - 1][i]); }
+			}
+		}
+
 		car = new Vehicle(1, 1);
 	}
 
@@ -79,22 +89,23 @@ public class PlayState extends BasicGameState {
 
 			if (input.isKeyDown(Input.KEY_W) && car.inMotion()) {
 				if (input.isKeyDown(Input.KEY_A)) {
-					car.turnLeft();
+					car.turnLeft(cap.tile[car.getxLocation()][car.getyLocation()]);
 				}
 				else if (input.isKeyDown(Input.KEY_D)) {
-					car.turnRight();
+					car.turnRight(cap.tile[car.getxLocation()][car.getyLocation()]);
+				}
+				else {
+					car.accelerate(cap.tile[car.getxLocation()][car.getyLocation()], speed);
 				}
 			}
 			else if (input.isKeyDown(Input.KEY_W)) {
-				car.accelerate(speed);
+				car.accelerate(cap.tile[car.getxLocation()][car.getyLocation()], speed);
 			}
-			else if (input.isKeyDown(Input.KEY_S) && !car.inMotion() &&
-				cap.tile[car.getxLocation()][car.getyLocation() + 1].getType() == Tile.ROAD_TYPE) {
-				car.reverse(speed);
+			else if (input.isKeyDown(Input.KEY_S) && !car.inMotion()) {
+				car.reverse(cap.tile[car.getxLocation()][car.getyLocation()], speed);
 			}
 			else {
 				car.stop();
-				car.reset();
 			}
 
 

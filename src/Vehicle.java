@@ -110,19 +110,24 @@ public class Vehicle extends Entity {
 	 *
 	 * @param speed The desired magnitude of the velocity
 	 */
-	void accelerate(float speed) {
-		switch (direction) {
-			case NORTH:
-				setVelocity(Vector.getUnit(270).scale(speed), true);
-				break;
-			case EAST:
-				setVelocity(Vector.getUnit(0).scale(speed), true);
-				break;
-			case SOUTH:
-				setVelocity(Vector.getUnit(90).scale(speed), true);
-				break;
-			case WEST:
-				setVelocity(Vector.getUnit(180).scale(speed), true);
+	void accelerate(Tile t, float speed) {
+		if (t.getNeighbor(direction).getType() == Tile.ROAD_TYPE) {
+			switch (direction) {
+				case NORTH:
+					setVelocity(Vector.getUnit(270).scale(speed), true);
+					break;
+				case EAST:
+					setVelocity(Vector.getUnit(0).scale(speed), true);
+					break;
+				case SOUTH:
+					setVelocity(Vector.getUnit(90).scale(speed), true);
+					break;
+				case WEST:
+					setVelocity(Vector.getUnit(180).scale(speed), true);
+			}
+		}
+		else {
+			stop();
 		}
 	}
 
@@ -130,34 +135,52 @@ public class Vehicle extends Entity {
 	 * Turn the vehicle to the right.
 	 * Adjust the vehicle's velocity to be 90 degrees from it's current velocity.
 	 */
-	void turnRight() {
-		setVelocity(velocity.rotate(90d), true);
+	void turnRight(Tile t) {
+		if (t.getNeighbor((direction + 1) % 4).getType() == Tile.ROAD_TYPE) {
+			setVelocity(velocity.rotate(90d), true);
+		}
+		else if (t.getNeighbor(direction).getType() == Tile.LAND_TYPE) {
+			stop();
+		}
 	}
 
 	/**
 	 * Turn the vehicle to the left.
 	 * Adjust the vehicle's velocity to be 270 , or -90, degrees from it's current velocity.
 	 */
-	void turnLeft() {
-		setVelocity(velocity.rotate(270d), true);
+	void turnLeft(Tile t) {
+		if (direction == NORTH) {
+			if (t.getNeighbor(EAST).getType() == Tile.ROAD_TYPE) {
+				setVelocity(velocity.rotate(270d), true);
+			}
+			return;
+		}
+		if (t.getNeighbor(direction - 1).getType() == Tile.ROAD_TYPE) {
+			setVelocity(velocity.rotate(270d), true);
+		}
+		else if (t.getNeighbor(direction).getType() == Tile.LAND_TYPE) {
+			stop();
+		}
 	}
 
 	/**
 	 * Give the vehicle a velocity opposite its current direction.
 	 */
-	void reverse(float speed) {
-		switch (direction) {
-			case NORTH:
-				setVelocity(Vector.getUnit(270).scale(-speed), false);
-				break;
-			case EAST:
-				setVelocity(Vector.getUnit(0).scale(-speed), false);
-				break;
-			case SOUTH:
-				setVelocity(Vector.getUnit(90).scale(-speed), false);
-				break;
-			case WEST:
-				setVelocity(Vector.getUnit(180).scale(-speed), false);
+	void reverse(Tile t, float speed) {
+		if (t.getNeighbor((direction + 2) % 4).getType() == Tile.ROAD_TYPE) {
+			switch (direction) {
+				case NORTH:
+					setVelocity(Vector.getUnit(270).scale(-speed), false);
+					break;
+				case EAST:
+					setVelocity(Vector.getUnit(0).scale(-speed), false);
+					break;
+				case SOUTH:
+					setVelocity(Vector.getUnit(90).scale(-speed), false);
+					break;
+				case WEST:
+					setVelocity(Vector.getUnit(180).scale(-speed), false);
+			}
 		}
 	}
 
