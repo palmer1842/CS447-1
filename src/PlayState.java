@@ -47,6 +47,16 @@ public class PlayState extends BasicGameState {
 			y += 50;
 		}
 
+		// assign neighbors to each tile in the grid
+		for (int i = 0; i < 16; i++) {
+			for (int j = 0; j < 24; j++) {
+				if (i > 0) { cap.tile[j][i].setNorthNeighbor(cap.tile[j][i - 1]); }
+				if (j < 23) { cap.tile[j][i].setEastNeighbor(cap.tile[j + 1][i]); }
+				if (i < 15) { cap.tile[j][i].setSouthNeighbor(cap.tile[j][i + 1]); }
+				if (j > 0) { cap.tile[j][i].setWestNeighbor(cap.tile[j - 1][i]); }
+			}
+		}
+
 		car = new Vehicle(1, 1);
 	}
 
