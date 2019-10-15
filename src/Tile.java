@@ -48,20 +48,14 @@ public class Tile extends Entity {
 		westNeighbor = n;
 	}
 
-	Tile getNorthNeighbor() {
-		return northNeighbor;
-	}
-
-	Tile getEastNeighbor() {
-		return eastNeighbor;
-	}
-
-	Tile getSouthNeighbor() {
-		return southNeighbor;
-	}
-
-	Tile getWestNeighbor() {
-		return westNeighbor;
+	Tile getNeighbor(int direction) {
+		switch (direction) {
+			case Vehicle.NORTH: return northNeighbor;
+			case Vehicle.EAST: return eastNeighbor;
+			case Vehicle.SOUTH: return southNeighbor;
+			case Vehicle.WEST: return westNeighbor;
+			default: return null;
+		}
 	}
 
 	int getType() {
