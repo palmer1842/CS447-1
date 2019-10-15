@@ -12,12 +12,14 @@
 
 ## Open Issues ##
 
-- **10** Implement 'car-like' behavior with acceleration
-- Add various road types
+- **10** Add improved system to keep vehicle on roads using tile
+  metadata
+- **11** Add second vehicle - cop and robber
+- **12** Add collision detection between vehicles 
 - Add title screen
 - Add launch screen
 - Add win/lose screen
-- Add second vehicle
-- Add collision detection between vehicles
 - Add smooth animation to vehicle maneuvers
+- Implement 'car-like' behavior with acceleration
+- Add various road types
 - **8** Smooth movement of Vehicle between tiles
