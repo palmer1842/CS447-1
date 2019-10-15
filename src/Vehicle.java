@@ -71,36 +71,98 @@ public class Vehicle extends Entity {
 	 *
 	 * @param v a JIG Vector object
 	 */
-	void setVelocity(Vector v) {
-		// remove old image
-		switch(getCardinalDirection(velocity)) {
-			case NORTH:
-				removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_NORTH_RSC));
-				break;
-			case EAST:
-				removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_EAST_RSC));
-				break;
-			case SOUTH:
-				removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_SOUTH_RSC));
-				break;
-			case WEST:
-				removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_WEST_RSC));
-		}
-		// add new image to reflect new velocity
-		switch(direction = getCardinalDirection(v)) {
-			case NORTH:
-				addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_NORTH_RSC));
-				break;
-			case EAST:
-				addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_EAST_RSC));
-				break;
-			case SOUTH:
-				addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_SOUTH_RSC));
-				break;
-			case WEST:
-				addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_WEST_RSC));
+	void setVelocity(Vector v, boolean swapImage) {
+		if (swapImage) {
+			// remove old image
+			switch (getCardinalDirection(velocity)) {
+				case NORTH:
+					removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_NORTH_RSC));
+					break;
+				case EAST:
+					removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_EAST_RSC));
+					break;
+				case SOUTH:
+					removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_SOUTH_RSC));
+					break;
+				case WEST:
+					removeImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_WEST_RSC));
+			}
+			// add new image to reflect new velocity
+			switch (direction = getCardinalDirection(v)) {
+				case NORTH:
+					addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_NORTH_RSC));
+					break;
+				case EAST:
+					addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_EAST_RSC));
+					break;
+				case SOUTH:
+					addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_SOUTH_RSC));
+					break;
+				case WEST:
+					addImage(ResourceManager.getImage(CopsAndRobbers.VEHICLE_WEST_RSC));
+			}
 		}
 		velocity = v;	// update velocity
+	}
+
+	/**
+	 * Give the vehicle a positive velocity in its current direction.
+	 *
+	 * @param speed The desired magnitude of the velocity
+	 */
+	void accelerate(float speed) {
+		switch (direction) {
+			case NORTH:
+				setVelocity(Vector.getUnit(270).scale(speed), true);
+				break;
+			case EAST:
+				setVelocity(Vector.getUnit(0).scale(speed), true);
+				break;
+			case SOUTH:
+				setVelocity(Vector.getUnit(90).scale(speed), true);
+				break;
+			case WEST:
+				setVelocity(Vector.getUnit(180).scale(speed), true);
+		}
+	}
+
+	/**
+	 * Turn the vehicle to the right.
+	 * Adjust the vehicle's velocity to be 90 degrees from it's current velocity.
+	 */
+	void turnRight() {
+		setVelocity(velocity.rotate(90d), true);
+	}
+
+	/**
+	 * Turn the vehicle to the left.
+	 * Adjust the vehicle's velocity to be 270 , or -90, degrees from it's current velocity.
+	 */
+	void turnLeft() {
+		setVelocity(velocity.rotate(270d), true);
+	}
+
+	/**
+	 * Give the vehicle a velocity opposite its current direction.
+	 */
+	void reverse(float speed) {
+		switch (direction) {
+			case NORTH:
+				setVelocity(Vector.getUnit(270).scale(-speed), false);
+				break;
+			case EAST:
+				setVelocity(Vector.getUnit(0).scale(-speed), false);
+				break;
+			case SOUTH:
+				setVelocity(Vector.getUnit(90).scale(-speed), false);
+				break;
+			case WEST:
+				setVelocity(Vector.getUnit(180).scale(-speed), false);
+		}
+	}
+
+	void stop() {
+		setVelocity(new Vector(0f, 0f), false);
 	}
 
 	/**
@@ -113,6 +175,15 @@ public class Vehicle extends Entity {
 		float wiggle = 0f;
 		return (getX() <= tile.getX() + wiggle && getX() >= tile.getX() - wiggle &&
 			 getY() <= tile.getY() + wiggle && getY() >= tile.getY() - wiggle);
+	}
+
+	/**
+	 * Check to see if the vehicle is in motion, i.e. has a non zero velocity.
+	 *
+	 * @return true if the car is in motion
+	 */
+	boolean inMotion() {
+		return velocity.length() != 0f;
 	}
 
 	void reset() {
