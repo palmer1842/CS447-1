@@ -139,6 +139,9 @@ public class Vehicle extends Entity {
 		if (t.getNeighbor((direction + 1) % 4).getType() == Tile.ROAD_TYPE) {
 			setVelocity(velocity.rotate(90d), true);
 		}
+		else if (t.getNeighbor(direction).getType() == Tile.LAND_TYPE) {
+			stop();
+		}
 	}
 
 	/**
@@ -154,6 +157,9 @@ public class Vehicle extends Entity {
 		}
 		if (t.getNeighbor(direction - 1).getType() == Tile.ROAD_TYPE) {
 			setVelocity(velocity.rotate(270d), true);
+		}
+		else if (t.getNeighbor(direction).getType() == Tile.LAND_TYPE) {
+			stop();
 		}
 	}
 
