@@ -150,12 +150,14 @@ public class Vehicle extends Entity {
 	 */
 	void turnLeft(Tile t) {
 		if (direction == NORTH) {
-			if (t.getNeighbor(EAST).getType() == Tile.ROAD_TYPE) {
+			if (t.getNeighbor(WEST).getType() == Tile.ROAD_TYPE) {
 				setVelocity(velocity.rotate(270d), true);
 			}
-			return;
+			else if (t.getNeighbor(direction).getType() == Tile.LAND_TYPE) {
+				stop();
+			}
 		}
-		if (t.getNeighbor(direction - 1).getType() == Tile.ROAD_TYPE) {
+		else if (t.getNeighbor(direction - 1).getType() == Tile.ROAD_TYPE) {
 			setVelocity(velocity.rotate(270d), true);
 		}
 		else if (t.getNeighbor(direction).getType() == Tile.LAND_TYPE) {
