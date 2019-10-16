@@ -12,16 +12,20 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class CopsAndRobbers extends StateBasedGame {
 
-	static final String LAND_RSC = "resource/LandTile.png";
-	static final String ROAD_RSC = "resource/RoadTile.png";
-	static final String VEHICLE_NORTH_RSC = "resource/VehicleN.png";
-	static final String VEHICLE_EAST_RSC = "resource/VehicleE.png";
-	static final String VEHICLE_SOUTH_RSC = "resource/VehicleS.png";
-	static final String VEHICLE_WEST_RSC = "resource/VehicleW.png";
-	static final String COP_VEHICLE_NORTH_RSC = "resource/CopVehicleN.png";
-	static final String COP_VEHICLE_EAST_RSC = "resource/CopVehicleE.png";
-	static final String COP_VEHICLE_SOUTH_RSC = "resource/CopVehicleS.png";
-	static final String COP_VEHICLE_WEST_RSC = "resource/CopVehicleW.png";
+	static final String LAND_RSC = "resource/tile/LandTile.png";
+	static final String ROAD_RSC = "resource/tile/RoadTile.png";
+	static final String VEHICLE_NORTH_RSC = "resource/vehicle/VehicleN.png";
+	static final String VEHICLE_EAST_RSC = "resource/vehicle/VehicleE.png";
+	static final String VEHICLE_SOUTH_RSC = "resource/vehicle/VehicleS.png";
+	static final String VEHICLE_WEST_RSC = "resource/vehicle/VehicleW.png";
+	static final String COP_NORTH_RSC = "resource/cop/CopVehicleN.png";
+	static final String COP_EAST_RSC = "resource/cop/CopVehicleE.png";
+	static final String COP_SOUTH_RSC = "resource/cop/CopVehicleS.png";
+	static final String COP_WEST_RSC = "resource/cop/CopVehicleW.png";
+	static final String ROBBER_NORTH_RSC = "resource/robber/RobberVehicleN.png";
+	static final String ROBBER_EAST_RSC = "resource/robber/RobberVehicleE.png";
+	static final String ROBBER_SOUTH_RSC = "resource/robber/RobberVehicleS.png";
+	static final String ROBBER_WEST_RSC = "resource/robber/RobberVehicleW.png";
 
 	Tile[][] tile = new Tile[24][16];
 
@@ -48,10 +52,14 @@ public class CopsAndRobbers extends StateBasedGame {
 		ResourceManager.loadImage(VEHICLE_EAST_RSC);
 		ResourceManager.loadImage(VEHICLE_SOUTH_RSC);
 		ResourceManager.loadImage(VEHICLE_WEST_RSC);
-		ResourceManager.loadImage(COP_VEHICLE_NORTH_RSC);
-		ResourceManager.loadImage(COP_VEHICLE_EAST_RSC);
-		ResourceManager.loadImage(COP_VEHICLE_SOUTH_RSC);
-		ResourceManager.loadImage(COP_VEHICLE_WEST_RSC);
+		ResourceManager.loadImage(COP_NORTH_RSC);
+		ResourceManager.loadImage(COP_EAST_RSC);
+		ResourceManager.loadImage(COP_SOUTH_RSC);
+		ResourceManager.loadImage(COP_WEST_RSC);
+		ResourceManager.loadImage(ROBBER_NORTH_RSC);
+		ResourceManager.loadImage(ROBBER_EAST_RSC);
+		ResourceManager.loadImage(ROBBER_SOUTH_RSC);
+		ResourceManager.loadImage(ROBBER_WEST_RSC);
 	}
 
 	public static void main(String[] args) {
