@@ -18,6 +18,10 @@ public class CopsAndRobbers extends StateBasedGame {
 	static final String VEHICLE_EAST_RSC = "resource/VehicleE.png";
 	static final String VEHICLE_SOUTH_RSC = "resource/VehicleS.png";
 	static final String VEHICLE_WEST_RSC = "resource/VehicleW.png";
+	static final String COP_VEHICLE_NORTH_RSC = "resource/CopVehicleN.png";
+	static final String COP_VEHICLE_EAST_RSC = "resource/CopVehicleE.png";
+	static final String COP_VEHICLE_SOUTH_RSC = "resource/CopVehicleS.png";
+	static final String COP_VEHICLE_WEST_RSC = "resource/CopVehicleW.png";
 
 	Tile[][] tile = new Tile[24][16];
 
@@ -44,6 +48,10 @@ public class CopsAndRobbers extends StateBasedGame {
 		ResourceManager.loadImage(VEHICLE_EAST_RSC);
 		ResourceManager.loadImage(VEHICLE_SOUTH_RSC);
 		ResourceManager.loadImage(VEHICLE_WEST_RSC);
+		ResourceManager.loadImage(COP_VEHICLE_NORTH_RSC);
+		ResourceManager.loadImage(COP_VEHICLE_EAST_RSC);
+		ResourceManager.loadImage(COP_VEHICLE_SOUTH_RSC);
+		ResourceManager.loadImage(COP_VEHICLE_WEST_RSC);
 	}
 
 	public static void main(String[] args) {
