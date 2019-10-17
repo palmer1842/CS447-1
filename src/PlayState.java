@@ -1,3 +1,4 @@
+import jig.Collision;
 import jig.Vector;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -27,6 +28,7 @@ public class PlayState extends BasicGameState {
 
 	Robber car;
 	Cop cop;
+	Collision collisionTest;
 
 	@Override
 	public int getID() {
@@ -87,6 +89,12 @@ public class PlayState extends BasicGameState {
 		// 	plan
 		// else
 		// 	drive(plan)
+
+		// Collision test
+		collisionTest = car.collides(cop);
+		if (collisionTest != null) {
+			System.out.println("Collision");
+		}
 
 		if (car.isCentered(cap.tile[car.getxLocation()][car.getyLocation()])) {
 			Input input = container.getInput();
