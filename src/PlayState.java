@@ -26,6 +26,7 @@ public class PlayState extends BasicGameState {
 	Robber car;
 	Cop cop;
 	Collision collisionTest;
+	int winTimer;
 
 	@Override
 	public int getID() {
@@ -62,6 +63,7 @@ public class PlayState extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) {
 		CopsAndRobbers cap = (CopsAndRobbers) game;
 
+		winTimer = 200;
 		car = new Robber(1, 1, Vehicle.EAST);
 		cop = new Cop(21, 14, Vehicle.WEST);
 		cop.accelerate(cap.tile[cop.getxLocation()][cop.getyLocation()], 5f);
@@ -92,11 +94,19 @@ public class PlayState extends BasicGameState {
 		// else
 		// 	drive(plan)
 
-		// Collision test
+		// Vehicle Collision test
 		collisionTest = car.collides(cop);
 		if (collisionTest != null) {
 			System.out.println("Collision");
 			cap.enterState(CopsAndRobbers.GAMEOVERSTATE);
+		}
+
+		// Safe house 'collision' check
+		if (cap.tile[car.getxLocation()][car.getyLocation()].getType() == Tile.SAFE_HOUSE_TYPE) {
+			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
+			if (winTimer <= 0) {
+				cap.enterState(CopsAndRobbers.WINSTATE);
+			}
 		}
 
 		if (car.isCentered(cap.tile[car.getxLocation()][car.getyLocation()])) {
