@@ -25,7 +25,8 @@ public class PlayState extends BasicGameState {
 						 { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
 						 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }};
 
-	Vehicle car;
+	Robber car;
+	Cop cop;
 
 	@Override
 	public int getID() {
@@ -57,7 +58,9 @@ public class PlayState extends BasicGameState {
 			}
 		}
 
-		car = new Vehicle(1, 1);
+		car = new Robber(1, 1, Vehicle.EAST);
+		cop = new Cop(21, 14, Vehicle.WEST);
+		cop.accelerate(cap.tile[cop.getxLocation()][cop.getyLocation()], 5f);
 	}
 
 	@Override
@@ -71,6 +74,7 @@ public class PlayState extends BasicGameState {
 		}
 
 		car.render(g);
+		cop.render(g);
 	}
 
 	@Override
@@ -134,6 +138,10 @@ public class PlayState extends BasicGameState {
 //				car.reset();
 //			}
 		}
+		if (cop.isCentered(cap.tile[cop.getxLocation()][cop.getyLocation()])) {
+			cop.turnRight(cap.tile[cop.getxLocation()][cop.getyLocation()]);
+		}
 		car.drive(delta);
+		cop.drive(delta);
 	}
 }

@@ -12,11 +12,11 @@ public class Vehicle extends Entity {
 	static final int SOUTH = 2;
 	static final int WEST = 3;
 
-	Vehicle(int x, int y) {
-		addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.VEHICLE_EAST_RSC));
+	Vehicle(int x, int y, int d, String image) {
+		addImageWithBoundingBox(ResourceManager.getImage(image));
 
 		velocity = new Vector(0, 0);
-		direction = EAST;
+		direction = d;
 		setLocation(x, y);
 	}
 

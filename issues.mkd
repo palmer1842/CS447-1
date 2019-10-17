@@ -11,10 +11,10 @@
   Vehicle
 - **10** Add improved system to keep vehicle on roads using tile
   metadata
+- **11** Add second vehicle - cop and robber
 
 ## Open Issues ##
 
-- **11** Add second vehicle - cop and robber
 - **12** Add collision detection between vehicles 
 - Add title screen
 - Add launch screen
