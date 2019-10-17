@@ -15,6 +15,7 @@ public class CopsAndRobbers extends StateBasedGame {
 	public static final int TITLESTATE = 0;
 	public static final int LAUNCHSTATE = 1;
 	public static final int PLAYSTATE = 2;
+	public static final int GAMEOVERSTATE = 3;
 
 	static final String LAND_RSC = "resource/tile/LandTile.png";
 	static final String ROAD_RSC = "resource/tile/RoadTile.png";
@@ -51,6 +52,7 @@ public class CopsAndRobbers extends StateBasedGame {
 		addState(new TitleState());
 		addState(new LaunchState());
 		addState(new PlayState());
+		addState(new GameOverState());
 
 		ResourceManager.loadImage(LAND_RSC);
 		ResourceManager.loadImage(ROAD_RSC);

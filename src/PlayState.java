@@ -1,9 +1,6 @@
 import jig.Collision;
 import jig.Vector;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -59,6 +56,11 @@ public class PlayState extends BasicGameState {
 				if (j > 0) { cap.tile[j][i].setWestNeighbor(cap.tile[j - 1][i]); }
 			}
 		}
+	}
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) {
+		CopsAndRobbers cap = (CopsAndRobbers) game;
 
 		car = new Robber(1, 1, Vehicle.EAST);
 		cop = new Cop(21, 14, Vehicle.WEST);
@@ -94,6 +96,7 @@ public class PlayState extends BasicGameState {
 		collisionTest = car.collides(cop);
 		if (collisionTest != null) {
 			System.out.println("Collision");
+			cap.enterState(CopsAndRobbers.GAMEOVERSTATE);
 		}
 
 		if (car.isCentered(cap.tile[car.getxLocation()][car.getyLocation()])) {
