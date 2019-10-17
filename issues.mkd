@@ -14,10 +14,10 @@
 - **11** Add second vehicle - cop and robber
 - **12** Add collision detection between vehicles 
 - **13** Add title screen
+- **14** Add launch screen
 
 ## Open Issues ##
 
-- **14** Add launch screen
 - **15** Add game over screen, trigger after collision
 - **16** Add safe house
 - **17** Add win screen, trigger when robber reaches safe house

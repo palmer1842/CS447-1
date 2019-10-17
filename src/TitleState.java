@@ -32,12 +32,12 @@ public class TitleState extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int i) throws SlickException {
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 		Input input = container.getInput();
 
 		if (input.isKeyDown(Input.KEY_SPACE)) {
-			cap.enterState(CopsAndRobbers.PLAYSTATE);
+			cap.enterState(CopsAndRobbers.LAUNCHSTATE);
 		}
 	}
 }
