@@ -32,7 +32,7 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return 0;
+		return CopsAndRobbers.PLAYSTATE;
 	}
 
 	@Override

@@ -13,10 +13,10 @@
   metadata
 - **11** Add second vehicle - cop and robber
 - **12** Add collision detection between vehicles 
+- **13** Add title screen
 
 ## Open Issues ##
 
-- **13** Add title screen
 - **14** Add launch screen
 - **15** Add game over screen, trigger after collision
 - **16** Add safe house
