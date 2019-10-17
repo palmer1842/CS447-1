@@ -12,6 +12,9 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class CopsAndRobbers extends StateBasedGame {
 
+	public static final int TITLESTATE = 0;
+	public static final int PLAYSTATE = 1;
+
 	static final String LAND_RSC = "resource/tile/LandTile.png";
 	static final String ROAD_RSC = "resource/tile/RoadTile.png";
 	static final String VEHICLE_NORTH_RSC = "resource/vehicle/VehicleN.png";
@@ -44,6 +47,7 @@ public class CopsAndRobbers extends StateBasedGame {
 			Play as Cop
 			Win/Lose
 		 */
+		addState(new TitleState());
 		addState(new PlayState());
 
 		ResourceManager.loadImage(LAND_RSC);
