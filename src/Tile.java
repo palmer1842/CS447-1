@@ -5,6 +5,7 @@ public class Tile extends Entity {
 
 	static final int LAND_TYPE = 0;
 	static final int ROAD_TYPE = 1;
+	static final int SAFE_HOUSE_TYPE = 2;
 
 	// successors used for collision checks and path finding
 	private Tile northNeighbor;
@@ -24,6 +25,10 @@ public class Tile extends Entity {
 			case ROAD_TYPE:
 				this.type = ROAD_TYPE;
 				addImage(ResourceManager.getImage(CopsAndRobbers.ROAD_RSC));
+				break;
+			case SAFE_HOUSE_TYPE:
+				this.type = SAFE_HOUSE_TYPE;
+				addImage(ResourceManager.getImage(CopsAndRobbers.SAFE_HOUSE_RSC));
 		}
 		// initialize to null as default
 		northNeighbor = null;

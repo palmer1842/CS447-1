@@ -19,6 +19,7 @@ public class CopsAndRobbers extends StateBasedGame {
 
 	static final String LAND_RSC = "resource/tile/LandTile.png";
 	static final String ROAD_RSC = "resource/tile/RoadTile.png";
+	static final String SAFE_HOUSE_RSC = "resource/tile/SafeHouseTile.png";
 	static final String VEHICLE_NORTH_RSC = "resource/vehicle/VehicleN.png";
 	static final String VEHICLE_EAST_RSC = "resource/vehicle/VehicleE.png";
 	static final String VEHICLE_SOUTH_RSC = "resource/vehicle/VehicleS.png";
@@ -56,6 +57,7 @@ public class CopsAndRobbers extends StateBasedGame {
 
 		ResourceManager.loadImage(LAND_RSC);
 		ResourceManager.loadImage(ROAD_RSC);
+		ResourceManager.loadImage(SAFE_HOUSE_RSC);
 		ResourceManager.loadImage(VEHICLE_NORTH_RSC);
 		ResourceManager.loadImage(VEHICLE_EAST_RSC);
 		ResourceManager.loadImage(VEHICLE_SOUTH_RSC);
