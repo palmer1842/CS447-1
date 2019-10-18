@@ -23,8 +23,8 @@ public class PlayState extends BasicGameState {
 						 { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
 						 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }};
 
-	Robber car;
-	Cop cop;
+	Vehicle player;
+	Vehicle computer;
 	Collision collisionTest;
 	int winTimer;
 
@@ -64,9 +64,16 @@ public class PlayState extends BasicGameState {
 		CopsAndRobbers cap = (CopsAndRobbers) game;
 
 		winTimer = 200;
-		car = new Robber(1, 1, Vehicle.EAST);
-		cop = new Cop(21, 14, Vehicle.WEST);
-		cop.accelerate(cap.tile[cop.getxLocation()][cop.getyLocation()], 5f);
+
+		if (cap.robbergame) {
+			player = new Robber(1, 1, Vehicle.EAST);
+			computer = new Cop(21, 14, Vehicle.WEST);
+		}
+		else {
+			player = new Cop(21, 14, Vehicle.WEST);
+			computer = new Robber(2, 1, Vehicle.EAST);
+		}
+		computer.accelerate(cap.tile[computer.getxLocation()][computer.getyLocation()], 5f);
 	}
 
 	@Override
@@ -79,8 +86,8 @@ public class PlayState extends BasicGameState {
 			}
 		}
 
-		car.render(g);
-		cop.render(g);
+		player.render(g);
+		computer.render(g);
 	}
 
 	@Override
@@ -95,42 +102,42 @@ public class PlayState extends BasicGameState {
 		// 	drive(plan)
 
 		// Vehicle Collision test
-		collisionTest = car.collides(cop);
+		collisionTest = player.collides(computer);
 		if (collisionTest != null) {
 			System.out.println("Collision");
 			cap.enterState(CopsAndRobbers.GAMEOVERSTATE);
 		}
 
 		// Safe house 'collision' check
-		if (cap.tile[car.getxLocation()][car.getyLocation()].getType() == Tile.SAFE_HOUSE_TYPE) {
+		if (cap.tile[player.getxLocation()][player.getyLocation()].getType() == Tile.SAFE_HOUSE_TYPE) {
 			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
 			if (winTimer <= 0) {
 				cap.enterState(CopsAndRobbers.WINSTATE);
 			}
 		}
 
-		if (car.isCentered(cap.tile[car.getxLocation()][car.getyLocation()])) {
+		if (player.isCentered(cap.tile[player.getxLocation()][player.getyLocation()])) {
 			Input input = container.getInput();
 
-			if (input.isKeyDown(Input.KEY_W) && car.inMotion()) {
+			if (input.isKeyDown(Input.KEY_W) && player.inMotion()) {
 				if (input.isKeyDown(Input.KEY_A)) {
-					car.turnLeft(cap.tile[car.getxLocation()][car.getyLocation()]);
+					player.turnLeft(cap.tile[player.getxLocation()][player.getyLocation()]);
 				}
 				else if (input.isKeyDown(Input.KEY_D)) {
-					car.turnRight(cap.tile[car.getxLocation()][car.getyLocation()]);
+					player.turnRight(cap.tile[player.getxLocation()][player.getyLocation()]);
 				}
 				else {
-					car.accelerate(cap.tile[car.getxLocation()][car.getyLocation()], speed);
+					player.accelerate(cap.tile[player.getxLocation()][player.getyLocation()], speed);
 				}
 			}
 			else if (input.isKeyDown(Input.KEY_W)) {
-				car.accelerate(cap.tile[car.getxLocation()][car.getyLocation()], speed);
+				player.accelerate(cap.tile[player.getxLocation()][player.getyLocation()], speed);
 			}
-			else if (input.isKeyDown(Input.KEY_S) && !car.inMotion()) {
-				car.reverse(cap.tile[car.getxLocation()][car.getyLocation()], speed);
+			else if (input.isKeyDown(Input.KEY_S) && !player.inMotion()) {
+				player.reverse(cap.tile[player.getxLocation()][player.getyLocation()], speed);
 			}
 			else {
-				car.stop();
+				player.stop();
 			}
 
 
@@ -159,10 +166,10 @@ public class PlayState extends BasicGameState {
 //				car.reset();
 //			}
 		}
-		if (cop.isCentered(cap.tile[cop.getxLocation()][cop.getyLocation()])) {
-			cop.turnRight(cap.tile[cop.getxLocation()][cop.getyLocation()]);
+		if (computer.isCentered(cap.tile[computer.getxLocation()][computer.getyLocation()])) {
+			computer.turnRight(cap.tile[computer.getxLocation()][computer.getyLocation()]);
 		}
-		car.drive(delta);
-		cop.drive(delta);
+		player.drive(delta);
+		computer.drive(delta);
 	}
 }
