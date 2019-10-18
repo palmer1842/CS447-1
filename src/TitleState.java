@@ -6,6 +6,7 @@ public class TitleState extends BasicGameState {
 
 	private Robber robber;
 	private Cop cop1, cop2, cop3;
+	private int selectBoxX;
 
 	@Override
 	public int getID() {
@@ -15,9 +16,10 @@ public class TitleState extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		robber = new Robber(15, 10, Vehicle.WEST);
-		cop1 = new Cop(8, 8, Vehicle.WEST);
-		cop2 = new Cop(10, 10, Vehicle.WEST);
-		cop3 = new Cop(8, 12, Vehicle.WEST);
+		cop1 = new Cop(6, 9, Vehicle.WEST);
+		cop2 = new Cop(8, 10, Vehicle.WEST);
+		cop3 = new Cop(6, 11, Vehicle.WEST);
+		selectBoxX = 395;
 	}
 
 	@Override
@@ -25,6 +27,10 @@ public class TitleState extends BasicGameState {
 		g.setBackground(new Color(Color.darkGray));
 		g.drawString("Cops and Robbers", 520, 300);
 		g.drawString("Press Space to start", 500, 320);
+		g.setLineWidth(5f);
+		g.setColor(new Color(Color.orange));
+		g.drawRect(selectBoxX, 495, 60, 60);
+		g.setColor(new Color(Color.white));
 		robber.render(g);
 		cop1.render(g);
 		cop2.render(g);
@@ -36,6 +42,18 @@ public class TitleState extends BasicGameState {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 		Input input = container.getInput();
 
+		// switch between game mode selector
+		if (input.isKeyDown(Input.KEY_A)) {
+			selectBoxX = 395;
+			cap.robbergame = false;
+		}
+
+		if (input.isKeyDown(Input.KEY_D)) {
+			selectBoxX = 745;
+			cap.robbergame = true;
+		}
+
+		// start game
 		if (input.isKeyDown(Input.KEY_SPACE)) {
 			cap.enterState(CopsAndRobbers.LAUNCHSTATE);
 		}

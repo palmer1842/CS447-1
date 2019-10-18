@@ -35,6 +35,7 @@ public class CopsAndRobbers extends StateBasedGame {
 	static final String ROBBER_WEST_RSC = "resource/robber/RobberVehicleW.png";
 
 	Tile[][] tile = new Tile[24][16];
+	boolean robbergame;
 
 	public CopsAndRobbers(String name) {
 		super(name);

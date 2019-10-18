@@ -18,10 +18,10 @@
 - **15** Add game over screen, trigger after collision
 - **16** Add safe house
 - **17** Add win screen, trigger when robber reaches safe house
+- **18** Add second game mode to play as cop
 
 ## Open Issues ##
 
-- **18** Add second game mode to play as cop
 - Implement Dijkstra's for Cop AI
 - Implement Dijkstra's for Robber AI
 - Add smooth animation to vehicle maneuvers
