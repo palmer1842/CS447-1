@@ -38,24 +38,19 @@ public class PlayState extends BasicGameState {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 
 		// build tile array based on 'worldMap'
-		int x = 25;
-		int y = 25;
-		for (int i = 0; i < 16; i++) {
-			for (int j = 0; j < 24; j++) {
-				cap.world[j][i] = new Tile(worldMap[i][j], x, y);
-				x += 50;
+		for (int y = 0; y < 16; y++) {
+			for (int x = 0; x < 24; x++) {
+				cap.world[x][y] = new Tile(worldMap[y][x], x, y);
 			}
-			x = 25;
-			y += 50;
 		}
 
 		// assign neighbors to each tile in the grid
-		for (int i = 0; i < 16; i++) {
-			for (int j = 0; j < 24; j++) {
-				if (i > 0) { cap.world[j][i].setNorthNeighbor(cap.world[j][i - 1]); }
-				if (j < 23) { cap.world[j][i].setEastNeighbor(cap.world[j + 1][i]); }
-				if (i < 15) { cap.world[j][i].setSouthNeighbor(cap.world[j][i + 1]); }
-				if (j > 0) { cap.world[j][i].setWestNeighbor(cap.world[j - 1][i]); }
+		for (int y = 0; y < 16; y++) {
+			for (int x = 0; x < 24; x++) {
+				if (y > 0) { cap.world[x][y].setNorthNeighbor(cap.world[x][y - 1]); }
+				if (x < 23) { cap.world[x][y].setEastNeighbor(cap.world[x + 1][y]); }
+				if (y < 15) { cap.world[x][y].setSouthNeighbor(cap.world[x][y + 1]); }
+				if (x > 0) { cap.world[x][y].setWestNeighbor(cap.world[x - 1][y]); }
 			}
 		}
 	}
