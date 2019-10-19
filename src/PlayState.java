@@ -72,7 +72,7 @@ public class PlayState extends BasicGameState {
 			player = new Cop(21, 14, Vehicle.WEST, cap.tile);
 			computer = new Robber(2, 1, Vehicle.EAST, cap.tile);
 		}
-		computer.accelerate(computer.getTile(), 5f);
+		computer.accelerate(5f);
 	}
 
 	@Override
@@ -115,25 +115,25 @@ public class PlayState extends BasicGameState {
 			}
 		}
 
-		if (player.isCentered(player.getTile())) {
+		if (player.isCentered()) {
 			Input input = container.getInput();
 
 			if (input.isKeyDown(Input.KEY_W) && player.inMotion()) {
 				if (input.isKeyDown(Input.KEY_A)) {
-					player.turnLeft(player.getTile());
+					player.turnLeft();
 				}
 				else if (input.isKeyDown(Input.KEY_D)) {
-					player.turnRight(player.getTile());
+					player.turnRight();
 				}
 				else {
-					player.accelerate(player.getTile(), speed);
+					player.accelerate(speed);
 				}
 			}
 			else if (input.isKeyDown(Input.KEY_W)) {
-				player.accelerate(player.getTile(), speed);
+				player.accelerate(speed);
 			}
 			else if (input.isKeyDown(Input.KEY_S)) {
-				player.reverse(player.getTile(), speed);
+				player.reverse(speed);
 			}
 			else {
 				player.stop();
@@ -165,8 +165,8 @@ public class PlayState extends BasicGameState {
 //				car.reset();
 //			}
 		}
-		if (computer.isCentered(computer.getTile())) {
-			computer.turnRight(computer.getTile());
+		if (computer.isCentered()) {
+			computer.turnRight();
 		}
 		player.drive(delta);
 		computer.drive(delta);

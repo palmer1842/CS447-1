@@ -129,8 +129,8 @@ public class Vehicle extends Entity {
 	 *
 	 * @param speed The desired magnitude of the velocity
 	 */
-	void accelerate(Tile t, float speed) {
-		if (t.getNeighbor(direction).getType() != Tile.LAND_TYPE) {
+	void accelerate(float speed) {
+		if (getTile().getNeighbor(direction).getType() != Tile.LAND_TYPE) {
 			switch (direction) {
 				case NORTH:
 					setVelocity(Vector.getUnit(270).scale(speed), true);
@@ -154,8 +154,8 @@ public class Vehicle extends Entity {
 	 * Turn the vehicle to the right.
 	 * Adjust the vehicle's velocity to be 90 degrees from it's current velocity.
 	 */
-	void turnRight(Tile t) {
-		if (t.getNeighbor((direction + 1) % 4).getType() != Tile.LAND_TYPE) {
+	void turnRight() {
+		if (getTile().getNeighbor((direction + 1) % 4).getType() != Tile.LAND_TYPE) {
 			setVelocity(velocity.rotate(90d), true);
 		}
 		else {
@@ -167,16 +167,16 @@ public class Vehicle extends Entity {
 	 * Turn the vehicle to the left.
 	 * Adjust the vehicle's velocity to be 270 , or -90, degrees from it's current velocity.
 	 */
-	void turnLeft(Tile t) {
+	void turnLeft() {
 		if (direction == NORTH) {
-			if (t.getNeighbor(WEST).getType() != Tile.LAND_TYPE) {
+			if (getTile().getNeighbor(WEST).getType() != Tile.LAND_TYPE) {
 				setVelocity(velocity.rotate(270d), true);
 			}
 			else {
 				stop();
 			}
 		}
-		else if (t.getNeighbor(direction - 1).getType() != Tile.LAND_TYPE) {
+		else if (getTile().getNeighbor(direction - 1).getType() != Tile.LAND_TYPE) {
 			setVelocity(velocity.rotate(270d), true);
 		}
 		else {
@@ -187,8 +187,8 @@ public class Vehicle extends Entity {
 	/**
 	 * Give the vehicle a velocity opposite its current direction.
 	 */
-	void reverse(Tile t, float speed) {
-		if (t.getNeighbor((direction + 2) % 4).getType() != Tile.LAND_TYPE) {
+	void reverse(float speed) {
+		if (getTile().getNeighbor((direction + 2) % 4).getType() != Tile.LAND_TYPE) {
 			switch (direction) {
 				case NORTH:
 					setVelocity(Vector.getUnit(270).scale(-speed), false);
@@ -218,10 +218,10 @@ public class Vehicle extends Entity {
 	 *
 	 * @return true if the car is centered
 	 */
-	boolean isCentered(Tile tile) {
+	boolean isCentered() {
 		float wiggle = 0f;
-		return (getX() <= tile.getX() + wiggle && getX() >= tile.getX() - wiggle &&
-			 getY() <= tile.getY() + wiggle && getY() >= tile.getY() - wiggle);
+		return (getX() <= getTile().getX() + wiggle && getX() >= getTile().getX() - wiggle &&
+			 getY() <= getTile().getY() + wiggle && getY() >= getTile().getY() - wiggle);
 	}
 
 	/**
