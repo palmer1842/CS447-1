@@ -133,7 +133,7 @@ public class PlayState extends BasicGameState {
 			else if (input.isKeyDown(Input.KEY_W)) {
 				player.accelerate(cap.tile[player.getxLocation()][player.getyLocation()], speed);
 			}
-			else if (input.isKeyDown(Input.KEY_S) && !player.inMotion()) {
+			else if (input.isKeyDown(Input.KEY_S)) {
 				player.reverse(cap.tile[player.getxLocation()][player.getyLocation()], speed);
 			}
 			else {

@@ -197,6 +197,9 @@ public class Vehicle extends Entity {
 					setVelocity(Vector.getUnit(180).scale(-speed), false);
 			}
 		}
+		else {
+			stop();
+		}
 	}
 
 	void stop() {
