@@ -27,12 +27,14 @@
 
 ## Open Issues ##
 
-- **24** Implement Dijkstra's for Cop AI
-- **25** Implement Dijkstra's for Robber AI
+- **24** Add weights to tiles for Dijkstra's
+- **25** Implement Dijkstra's for Cop AI
+- **26** Implement Dijkstra's for Robber AI
+- **27** Correctly handle all win/loss conditions for both game modes
+- **28** Fix bug with reverse that causes duplicate vehicle images
 - Devise and implement score system
 - Create second level
 - Add smooth animation to vehicle maneuvers
-
 - Implement 'car-like' behavior with acceleration
 - Add various road types
 - **8** Smooth movement of Vehicle between tiles
