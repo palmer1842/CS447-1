@@ -25,13 +25,13 @@ public class LaunchState extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		CopsAndRobbers cap = (CopsAndRobbers) game;
 
-		if (cap.robbergame) {
+		if (cap.robberGame) {
 			g.drawString("You are the robber!", 515, 300);
 			g.drawString("Reach the safe house with out getting caught", 390, 320);
 		}
 		else {
 			g.drawString("You are a cop!", 530, 300);
-			g.drawString("Catch the robber before he reaches the safe house", 385, 320);
+			g.drawString("Catch the robber before they reach the safe house", 385, 320);
 		}
 	}
 

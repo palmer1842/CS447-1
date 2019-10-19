@@ -2,6 +2,12 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The Win state of the game. It displays a message congratulating the user as well as their final score.
+ * When the user presses the Space Bar, it transitions back to the title screen.
+ *
+ * @author Jake Palmer
+ */
 public class WinState extends BasicGameState {
 	@Override
 	public int getID() {

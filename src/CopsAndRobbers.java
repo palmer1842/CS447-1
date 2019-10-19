@@ -34,8 +34,8 @@ public class CopsAndRobbers extends StateBasedGame {
 	static final String ROBBER_SOUTH_RSC = "resource/robber/RobberVehicleS.png";
 	static final String ROBBER_WEST_RSC = "resource/robber/RobberVehicleW.png";
 
-	Tile[][] tile = new Tile[24][16];
-	boolean robbergame;
+	Tile[][] world = new Tile[24][16];
+	boolean robberGame;
 
 	public CopsAndRobbers(String name) {
 		super(name);
@@ -45,13 +45,6 @@ public class CopsAndRobbers extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer gameContainer) throws SlickException {
-		/* Potential States:
-			Title
-			Launch
-			Play as Robber
-			Play as Cop
-			Win/Lose
-		 */
 		addState(new TitleState());
 		addState(new LaunchState());
 		addState(new PlayState());

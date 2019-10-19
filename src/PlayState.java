@@ -5,27 +5,28 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class PlayState extends BasicGameState {
 
-	int[][] world_map = {{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-						 { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-					     { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-					     { 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-					     { 0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-					     { 0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-					     { 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,0,0,1,1,0 },
-					     { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-						 { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-						 { 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-					  	 { 0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-						 { 0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-						 { 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-						 { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-						 { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-						 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }};
+	private int[][] worldMap = {
+		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,0,0,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+	};
 
-	Vehicle player;
-	Vehicle computer;
-	Collision collisionTest;
-	int winTimer;
+	private Vehicle player;
+	private Vehicle computer;
+	private int winTimer;
 
 	@Override
 	public int getID() {
@@ -36,11 +37,12 @@ public class PlayState extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 
+		// build tile array based on 'worldMap'
 		int x = 25;
 		int y = 25;
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 24; j++) {
-				cap.tile[j][i] = new Tile(world_map[i][j], x, y);
+				cap.world[j][i] = new Tile(worldMap[i][j], x, y);
 				x += 50;
 			}
 			x = 25;
@@ -50,10 +52,10 @@ public class PlayState extends BasicGameState {
 		// assign neighbors to each tile in the grid
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 24; j++) {
-				if (i > 0) { cap.tile[j][i].setNorthNeighbor(cap.tile[j][i - 1]); }
-				if (j < 23) { cap.tile[j][i].setEastNeighbor(cap.tile[j + 1][i]); }
-				if (i < 15) { cap.tile[j][i].setSouthNeighbor(cap.tile[j][i + 1]); }
-				if (j > 0) { cap.tile[j][i].setWestNeighbor(cap.tile[j - 1][i]); }
+				if (i > 0) { cap.world[j][i].setNorthNeighbor(cap.world[j][i - 1]); }
+				if (j < 23) { cap.world[j][i].setEastNeighbor(cap.world[j + 1][i]); }
+				if (i < 15) { cap.world[j][i].setSouthNeighbor(cap.world[j][i + 1]); }
+				if (j > 0) { cap.world[j][i].setWestNeighbor(cap.world[j - 1][i]); }
 			}
 		}
 	}
@@ -62,15 +64,16 @@ public class PlayState extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) {
 		CopsAndRobbers cap = (CopsAndRobbers) game;
 
-		winTimer = 200;
+		winTimer = 200;	// 200 millisecond delay after winning to allow animations to finish
 
-		if (cap.robbergame) {
-			player = new Robber(1, 1, Vehicle.EAST, cap.tile);
-			computer = new Cop(21, 14, Vehicle.WEST, cap.tile);
+		// depending on which game mode the player selected, assign them to the robber or a cop
+		if (cap.robberGame) {
+			player = new Robber(1, 1, Vehicle.EAST, cap.world);
+			computer = new Cop(21, 14, Vehicle.WEST, cap.world);
 		}
 		else {
-			player = new Cop(21, 14, Vehicle.WEST, cap.tile);
-			computer = new Robber(2, 1, Vehicle.EAST, cap.tile);
+			player = new Cop(21, 14, Vehicle.WEST, cap.world);
+			computer = new Robber(2, 1, Vehicle.EAST, cap.world);
 		}
 		computer.accelerate(5f);
 	}
@@ -79,9 +82,10 @@ public class PlayState extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 
+		// draw map
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 24; j++) {
-				cap.tile[j][i].render(g);
+				cap.world[j][i].render(g);
 			}
 		}
 
@@ -93,17 +97,10 @@ public class PlayState extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 		float speed = 5f;
-		// OUTILNE
-		// if at center
-		// 	getInput
-		// 	plan
-		// else
-		// 	drive(plan)
 
 		// Vehicle Collision test
-		collisionTest = player.collides(computer);
+		Collision collisionTest = player.collides(computer);
 		if (collisionTest != null) {
-			System.out.println("Collision");
 			cap.enterState(CopsAndRobbers.GAMEOVERSTATE);
 		}
 
@@ -115,10 +112,11 @@ public class PlayState extends BasicGameState {
 			}
 		}
 
+		// get input for player
 		if (player.isCentered()) {
 			Input input = container.getInput();
 
-			if (input.isKeyDown(Input.KEY_W) && player.inMotion()) {
+			if (input.isKeyDown(Input.KEY_W) && player.inMotion()) {	// only allow turning while in motion
 				if (input.isKeyDown(Input.KEY_A)) {
 					player.turnLeft();
 				}
@@ -138,36 +136,13 @@ public class PlayState extends BasicGameState {
 			else {
 				player.stop();
 			}
-
-
-//			if (input.isKeyDown(Input.KEY_W) &&
-//				cap.tile[car.getxLocation()][car.getyLocation() - 1].getType() == Tile.ROAD_TYPE) {
-//				car.setVelocity(new Vector(0f, -speed));
-//				car.reset();
-//			}
-//			else if (input.isKeyDown(Input.KEY_S) &&
-//				cap.tile[car.getxLocation()][car.getyLocation() + 1].getType() == Tile.ROAD_TYPE) {
-//				car.setVelocity(new Vector(0f, speed));
-//				car.reset();
-//			}
-//			else if (input.isKeyDown(Input.KEY_A) &&
-//				cap.tile[car.getxLocation() - 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
-//				car.setVelocity(new Vector(-speed, 0f));
-//				car.reset();
-//			}
-//			else if (input.isKeyDown(Input.KEY_D) &&
-//				cap.tile[car.getxLocation() + 1][car.getyLocation()].getType() == Tile.ROAD_TYPE) {
-//				car.setVelocity(new Vector(speed, 0f));
-//				car.reset();
-//			}
-//			else {
-//				car.setVelocity(new Vector(0, 0));
-//				car.reset();
-//			}
 		}
+
+		// computer AI plans movement
 		if (computer.isCentered()) {
 			computer.turnRight();
 		}
+
 		player.drive(delta);
 		computer.drive(delta);
 	}
