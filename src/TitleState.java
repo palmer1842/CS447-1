@@ -6,6 +6,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class TitleState extends BasicGameState {
 
 	private int selectBoxX;
+	private boolean restart;
+	private int timer;
 
 	@Override
 	public int getID() {
@@ -15,6 +17,12 @@ public class TitleState extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		selectBoxX = 395;
+	}
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) {
+		restart = true;
+		timer = 500;
 	}
 
 	@Override
@@ -38,6 +46,14 @@ public class TitleState extends BasicGameState {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 		Input input = container.getInput();
 
+		// delay for player to release space bar after the game restarts
+		if (restart) {
+			timer -= delta;
+			if (timer <= 0) {
+				restart = false;
+			}
+		}
+
 		// switch between game mode selector
 		if (input.isKeyDown(Input.KEY_A)) {
 			selectBoxX = 395;
@@ -50,7 +66,7 @@ public class TitleState extends BasicGameState {
 		}
 
 		// start game
-		if (input.isKeyDown(Input.KEY_SPACE)) {
+		if (input.isKeyDown(Input.KEY_SPACE) && !restart) {
 			cap.enterState(CopsAndRobbers.LAUNCHSTATE);
 		}
 	}
