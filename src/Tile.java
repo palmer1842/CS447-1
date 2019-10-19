@@ -1,6 +1,13 @@
 import jig.Entity;
 import jig.ResourceManager;
 
+/**
+ * A class representing a single tile in the game world.
+ *
+ * Each tile is assigned a type, either Land, Road, or Safe House.
+ *
+ * @author Jake Palmer
+ */
 public class Tile extends Entity {
 
 	static final int LAND_TYPE = 0;

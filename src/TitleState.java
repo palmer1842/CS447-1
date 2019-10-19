@@ -3,6 +3,14 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The start up state of the game. It displays the title of the game and allows the user to select a game mode.
+ *
+ * A mock chase seen is rendered, and a moveable rectangle is drawn around one vehicle. The player can use the 'A'
+ * and 'D' keys to select a game mode, and then press space to begin the game.
+ *
+ * @author Jake Palmer
+ */
 public class TitleState extends BasicGameState {
 
 	private int selectBoxX;
@@ -30,6 +38,7 @@ public class TitleState extends BasicGameState {
 		g.setBackground(new Color(Color.darkGray));
 		g.drawString("Cops and Robbers", 520, 300);
 		g.drawString("Press Space to start", 500, 320);
+
 		g.setLineWidth(5f);
 		g.setColor(new Color(Color.orange));
 		g.drawRect(selectBoxX, 495, 60, 60);
@@ -57,12 +66,12 @@ public class TitleState extends BasicGameState {
 		// switch between game mode selector
 		if (input.isKeyDown(Input.KEY_A)) {
 			selectBoxX = 395;
-			cap.robbergame = false;
+			cap.robberGame = false;
 		}
 
 		if (input.isKeyDown(Input.KEY_D)) {
 			selectBoxX = 745;
-			cap.robbergame = true;
+			cap.robberGame = true;
 		}
 
 		// start game

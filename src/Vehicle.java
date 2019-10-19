@@ -2,9 +2,18 @@ import jig.Entity;
 import jig.ResourceManager;
 import jig.Vector;
 
+/**
+ * A class representing a simple vehicle that exists on a given tile based world.
+ * Through a set of basic methods the vehicle can be navigated through the world, only making movements onto valid
+ * road tiles.
+ *
+ * Extends the JIG Entity
+ *
+ * @author Jake Palmer
+ */
 public class Vehicle extends Entity {
 
-	Tile[][] world;
+	private Tile[][] world;
 	Vector velocity;
 	int direction;
 
@@ -13,6 +22,15 @@ public class Vehicle extends Entity {
 	static final int SOUTH = 2;
 	static final int WEST = 3;
 
+	/**
+	 * Creates a vehicle entity a given direction and orientation
+	 *
+	 * @param x the starting x-coordinate on the tile-grid
+	 * @param y the starting y-coordiante on the tile-grid
+	 * @param d the starting direction to be oriented in
+	 * @param neutral if true, uses a default resource
+	 * @param w the tile based world the vehicle exists in
+	 */
 	Vehicle(int x, int y, int d, boolean neutral, Tile[][] w) {
 		if (neutral) {
 			switch (d) {
@@ -35,14 +53,29 @@ public class Vehicle extends Entity {
 		setTilePosition(x, y);
 	}
 
+	/**
+	 * Get the vehicle's x position in tile-grid based coordinates.
+	 *
+	 * @return x-coordinate on the tile-grid
+	 */
 	int getTileX() {
 		return (int)((getX() - 25) / 50);
 	}
 
+	/**
+	 * Get the vehicle's y position in tile-gird based coordinates.
+	 *
+	 * @return y-coordinate on the tile-grid
+	 */
 	int getTileY() {
 		return (int)((getY() - 25) / 50);
 	}
 
+	/**
+	 * Get the current tile the vehicle is on from the world
+	 *
+	 * @return The tile object the vehicle is on
+	 */
 	Tile getTile() {
 		return world[getTileX()][getTileY()];
 	}
@@ -151,7 +184,7 @@ public class Vehicle extends Entity {
 	}
 
 	/**
-	 * Turn the vehicle to the right.
+	 * Turn the vehicle to the right if the right neighbor is a road tile.
 	 * Adjust the vehicle's velocity to be 90 degrees from it's current velocity.
 	 */
 	void turnRight() {
@@ -164,7 +197,7 @@ public class Vehicle extends Entity {
 	}
 
 	/**
-	 * Turn the vehicle to the left.
+	 * Turn the vehicle to the left if the left neighbor is a road tile.
 	 * Adjust the vehicle's velocity to be 270 , or -90, degrees from it's current velocity.
 	 */
 	void turnLeft() {
@@ -186,6 +219,8 @@ public class Vehicle extends Entity {
 
 	/**
 	 * Give the vehicle a velocity opposite its current direction.
+	 *
+	 * @param speed The desired magnitude of the velocity
 	 */
 	void reverse(float speed) {
 		if (getTile().getNeighbor((direction + 2) % 4).getType() != Tile.LAND_TYPE) {
@@ -214,7 +249,7 @@ public class Vehicle extends Entity {
 
 	/**
 	 * Check to see if the Vehicle is in the center of a tile.
-	 * Allows 2 pixels of wiggle room to account for instances where the car doesn't render in the exact center.
+	 * Allows wiggle room to account for instances where the car doesn't render in the exact center.
 	 *
 	 * @return true if the car is centered
 	 */
@@ -233,6 +268,9 @@ public class Vehicle extends Entity {
 		return velocity.length() != 0f;
 	}
 
+	/**
+	 * Reset the vehicle to the center of the tile it is in.
+	 */
 	void reset() {
 		setTilePosition(getTileX(), getTileY());
 	}

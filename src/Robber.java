@@ -1,6 +1,13 @@
 import jig.ResourceManager;
 import jig.Vector;
 
+/**
+ * A class that defines a specific type of Vehicle entity - a Robber
+ *
+ * This class uses the robber's resources and implements its unique path finding algorithm.
+ *
+ * @author Jake Palmer
+ */
 public class Robber extends Vehicle {
 
 	Robber(int x, int y, int d, Tile[][] w) {
@@ -20,6 +27,14 @@ public class Robber extends Vehicle {
 		}
 	}
 
+	/**
+	 * This override method uses the Robber's resources
+	 *
+	 * Set the velocity of the Vehicle entity.
+	 * Update the entity image to match its direction of travel.
+	 *
+	 * @param v a JIG Vector object
+	 */
 	@Override
 	void setVelocity(Vector v, boolean swapImage) {
 		if (swapImage) {
