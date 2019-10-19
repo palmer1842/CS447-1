@@ -3,8 +3,8 @@ import jig.Vector;
 
 public class Cop extends Vehicle {
 
-	Cop(int x, int y, int d) {
-		super(x, y, d, false);
+	Cop(int x, int y, int d, Tile[][] w) {
+		super(x, y, d, false, w);
 		switch (d) {
 			case NORTH:
 				addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.COP_NORTH_RSC));

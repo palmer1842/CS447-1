@@ -1,11 +1,10 @@
+import jig.ResourceManager;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class TitleState extends BasicGameState {
 
-	private Robber robber;
-	private Cop cop1, cop2, cop3;
 	private int selectBoxX;
 
 	@Override
@@ -15,10 +14,6 @@ public class TitleState extends BasicGameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		robber = new Robber(15, 10, Vehicle.EAST);
-		cop1 = new Cop(6, 9, Vehicle.EAST);
-		cop2 = new Cop(8, 10, Vehicle.EAST);
-		cop3 = new Cop(6, 11, Vehicle.EAST);
 		selectBoxX = 395;
 	}
 
@@ -31,10 +26,11 @@ public class TitleState extends BasicGameState {
 		g.setColor(new Color(Color.orange));
 		g.drawRect(selectBoxX, 495, 60, 60);
 		g.setColor(new Color(Color.white));
-		robber.render(g);
-		cop1.render(g);
-		cop2.render(g);
-		cop3.render(g);
+
+		g.drawImage(ResourceManager.getImage(CopsAndRobbers.COP_EAST_RSC), 300, 450);
+		g.drawImage(ResourceManager.getImage(CopsAndRobbers.COP_EAST_RSC), 400, 500);
+		g.drawImage(ResourceManager.getImage(CopsAndRobbers.COP_EAST_RSC), 300, 550);
+		g.drawImage(ResourceManager.getImage(CopsAndRobbers.ROBBER_EAST_RSC), 750, 500);
 	}
 
 	@Override

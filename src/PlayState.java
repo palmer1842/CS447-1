@@ -1,5 +1,4 @@
 import jig.Collision;
-import jig.Vector;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -66,14 +65,14 @@ public class PlayState extends BasicGameState {
 		winTimer = 200;
 
 		if (cap.robbergame) {
-			player = new Robber(1, 1, Vehicle.EAST);
-			computer = new Cop(21, 14, Vehicle.WEST);
+			player = new Robber(1, 1, Vehicle.EAST, cap.tile);
+			computer = new Cop(21, 14, Vehicle.WEST, cap.tile);
 		}
 		else {
-			player = new Cop(21, 14, Vehicle.WEST);
-			computer = new Robber(2, 1, Vehicle.EAST);
+			player = new Cop(21, 14, Vehicle.WEST, cap.tile);
+			computer = new Robber(2, 1, Vehicle.EAST, cap.tile);
 		}
-		computer.accelerate(cap.tile[computer.getxLocation()][computer.getyLocation()], 5f);
+		computer.accelerate(5f);
 	}
 
 	@Override
@@ -109,32 +108,32 @@ public class PlayState extends BasicGameState {
 		}
 
 		// Safe house 'collision' check
-		if (cap.tile[player.getxLocation()][player.getyLocation()].getType() == Tile.SAFE_HOUSE_TYPE) {
+		if (player.getTile().getType() == Tile.SAFE_HOUSE_TYPE) {
 			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
 			if (winTimer <= 0) {
 				cap.enterState(CopsAndRobbers.WINSTATE);
 			}
 		}
 
-		if (player.isCentered(cap.tile[player.getxLocation()][player.getyLocation()])) {
+		if (player.isCentered()) {
 			Input input = container.getInput();
 
 			if (input.isKeyDown(Input.KEY_W) && player.inMotion()) {
 				if (input.isKeyDown(Input.KEY_A)) {
-					player.turnLeft(cap.tile[player.getxLocation()][player.getyLocation()]);
+					player.turnLeft();
 				}
 				else if (input.isKeyDown(Input.KEY_D)) {
-					player.turnRight(cap.tile[player.getxLocation()][player.getyLocation()]);
+					player.turnRight();
 				}
 				else {
-					player.accelerate(cap.tile[player.getxLocation()][player.getyLocation()], speed);
+					player.accelerate(speed);
 				}
 			}
 			else if (input.isKeyDown(Input.KEY_W)) {
-				player.accelerate(cap.tile[player.getxLocation()][player.getyLocation()], speed);
+				player.accelerate(speed);
 			}
 			else if (input.isKeyDown(Input.KEY_S)) {
-				player.reverse(cap.tile[player.getxLocation()][player.getyLocation()], speed);
+				player.reverse(speed);
 			}
 			else {
 				player.stop();
@@ -166,8 +165,8 @@ public class PlayState extends BasicGameState {
 //				car.reset();
 //			}
 		}
-		if (computer.isCentered(cap.tile[computer.getxLocation()][computer.getyLocation()])) {
-			computer.turnRight(cap.tile[computer.getxLocation()][computer.getyLocation()]);
+		if (computer.isCentered()) {
+			computer.turnRight();
 		}
 		player.drive(delta);
 		computer.drive(delta);
