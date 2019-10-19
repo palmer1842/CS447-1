@@ -12,9 +12,22 @@ public class Vehicle extends Entity {
 	static final int SOUTH = 2;
 	static final int WEST = 3;
 
-	Vehicle(int x, int y, int d, String image) {
-		addImageWithBoundingBox(ResourceManager.getImage(image));
-
+	Vehicle(int x, int y, int d, boolean neutral) {
+		if (neutral) {
+			switch (d) {
+				case NORTH:
+					addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.VEHICLE_NORTH_RSC));
+					break;
+				case EAST:
+					addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.VEHICLE_EAST_RSC));
+					break;
+				case SOUTH:
+					addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.VEHICLE_SOUTH_RSC));
+					break;
+				case WEST:
+					addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.VEHICLE_WEST_RSC));
+			}
+		}
 		velocity = new Vector(0, 0);
 		direction = d;
 		setLocation(x, y);

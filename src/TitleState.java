@@ -15,10 +15,10 @@ public class TitleState extends BasicGameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		robber = new Robber(15, 10, Vehicle.WEST);
-		cop1 = new Cop(6, 9, Vehicle.WEST);
-		cop2 = new Cop(8, 10, Vehicle.WEST);
-		cop3 = new Cop(6, 11, Vehicle.WEST);
+		robber = new Robber(15, 10, Vehicle.EAST);
+		cop1 = new Cop(6, 9, Vehicle.EAST);
+		cop2 = new Cop(8, 10, Vehicle.EAST);
+		cop3 = new Cop(6, 11, Vehicle.EAST);
 		selectBoxX = 395;
 	}
 
