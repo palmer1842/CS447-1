@@ -4,7 +4,20 @@ import jig.Vector;
 public class Cop extends Vehicle {
 
 	Cop(int x, int y, int d) {
-		super(x, y, d, CopsAndRobbers.COP_WEST_RSC);
+		super(x, y, d, false);
+		switch (d) {
+			case NORTH:
+				addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.COP_NORTH_RSC));
+				break;
+			case EAST:
+				addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.COP_EAST_RSC));
+				break;
+			case SOUTH:
+				addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.COP_SOUTH_RSC));
+				break;
+			case WEST:
+				addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.COP_WEST_RSC));
+		}
 	}
 
 	@Override

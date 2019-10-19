@@ -19,10 +19,10 @@
 - **16** Add safe house
 - **17** Add win screen, trigger when robber reaches safe house
 - **18** Add second game mode to play as cop
+- **19** Add functionality to set vehicle starting orientation
 
 ## Open Issues ##
 
-- **19** Add functionality to set vehicle starting orientation
 - **20** Fix buggy reverse movement
 - **21** Better integrate world and vehicle to simplify method calls
 - **22** Fix bug where title screen switches too quickly after restart
