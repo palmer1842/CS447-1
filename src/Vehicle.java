@@ -4,6 +4,7 @@ import jig.Vector;
 
 public class Vehicle extends Entity {
 
+	Tile[][] world;
 	Vector velocity;
 	int direction;
 
@@ -12,7 +13,7 @@ public class Vehicle extends Entity {
 	static final int SOUTH = 2;
 	static final int WEST = 3;
 
-	Vehicle(int x, int y, int d, boolean neutral) {
+	Vehicle(int x, int y, int d, boolean neutral, Tile[][] w) {
 		if (neutral) {
 			switch (d) {
 				case NORTH:
@@ -28,17 +29,22 @@ public class Vehicle extends Entity {
 					addImageWithBoundingBox(ResourceManager.getImage(CopsAndRobbers.VEHICLE_WEST_RSC));
 			}
 		}
+		world = w;
 		velocity = new Vector(0, 0);
 		direction = d;
-		setLocation(x, y);
+		setTilePosition(x, y);
 	}
 
-	int getxLocation() {
+	int getTileX() {
 		return (int)((getX() - 25) / 50);
 	}
 
-	int getyLocation() {
+	int getTileY() {
 		return (int)((getY() - 25) / 50);
+	}
+
+	Tile getTile() {
+		return world[getTileX()][getTileY()];
 	}
 
 	/**
@@ -47,7 +53,7 @@ public class Vehicle extends Entity {
 	 * @param x x-coordinate on the tile-grid
 	 * @param y y-coordinate on the tile-grid
 	 */
-	void setLocation(int x, int y) {
+	void setTilePosition(int x, int y) {
 		setPosition((x) * 50 + 25, (y) * 50 + 25);
 	}
 
@@ -228,7 +234,7 @@ public class Vehicle extends Entity {
 	}
 
 	void reset() {
-		setLocation(getxLocation(), getyLocation());
+		setTilePosition(getTileX(), getTileY());
 	}
 
 	/**
