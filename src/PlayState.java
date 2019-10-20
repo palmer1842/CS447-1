@@ -127,15 +127,24 @@ public class PlayState extends BasicGameState {
 
 		// Vehicle Collision test
 		Collision collisionTest = player.collides(computer);
-		if (collisionTest != null) {
+		if (collisionTest != null && cap.robberGame) {
 			cap.enterState(CopsAndRobbers.GAMEOVERSTATE);
+		}
+		else if (collisionTest != null) {
+			cap.enterState(CopsAndRobbers.WINSTATE);
 		}
 
 		// Safe house 'collision' check
-		if (player.getTile().getType() == Tile.SAFE_HOUSE_TYPE) {
+		if (cap.robberGame && player.getTile().getType() == Tile.SAFE_HOUSE_TYPE) {
 			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
 			if (winTimer <= 0) {
 				cap.enterState(CopsAndRobbers.WINSTATE);
+			}
+		}
+		if (!cap.robberGame && computer.getTile().getType() == Tile.SAFE_HOUSE_TYPE) {
+			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
+			if (winTimer <= 0) {
+				cap.enterState(CopsAndRobbers.GAMEOVERSTATE);
 			}
 		}
 

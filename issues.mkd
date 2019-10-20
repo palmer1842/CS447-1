@@ -27,10 +27,10 @@
 - **24** Add weights to tiles for Dijkstra's
 - **25** Implement Dijkstra's for Cop AI
 - **26** Implement Dijkstra's for Robber AI
+- **27** Correctly handle all win/loss conditions for both game modes
 
 ## Open Issues ##
 
-- **27** Correctly handle all win/loss conditions for both game modes
 - **28** Fix bug with reverse that causes duplicate vehicle images
 - Devise and implement score system
 - Create second level
