@@ -30,7 +30,13 @@ public class GameOverState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawString("Crash!", 550, 300);
+		CopsAndRobbers cap = (CopsAndRobbers)game;
+		if (cap.robberGame) {
+			g.drawString("Crash! You've been caught!", 490, 300);
+		}
+		else {
+			g.drawString("The robber escaped!", 500, 300);
+		}
 	}
 
 	@Override
