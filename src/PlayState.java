@@ -51,6 +51,7 @@ public class PlayState extends BasicGameState {
 	private Map<Tile, Integer> computerPI;
 	private int winTimer;
 	private boolean dijkstraToggle;
+	private Tile safeHouse;
 
 	@Override
 	public int getID() {
@@ -65,6 +66,9 @@ public class PlayState extends BasicGameState {
 		for (int y = 0; y < 16; y++) {
 			for (int x = 0; x < 24; x++) {
 				cap.world[x][y] = new Tile(worldMap[y][x], x, y);
+				if (cap.world[x][y].getType() == Tile.SAFE_HOUSE_TYPE) {
+					safeHouse = cap.world[x][y];
+				}
 			}
 		}
 
@@ -168,7 +172,12 @@ public class PlayState extends BasicGameState {
 
 		// computer AI plans movement
 		if (computer.isCentered()) {
-			computerPI = computer.pathfind(player.getTile(), speed);
+			if (cap.robberGame) {
+				computerPI = computer.pathfind(player.getTile(), speed);
+			}
+			else {
+				computerPI = computer.pathfind(safeHouse, speed);
+			}
 			int pathDir = computerPI.get(computer.getTile());
 			//System.out.println("PathDir: " + pathDir + " ComputerDir: " + computer.direction);
 			if (computer.inMotion()) {	// only allow turning while in motion
