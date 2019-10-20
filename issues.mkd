@@ -31,9 +31,10 @@
 
 ## Open Issues ##
 
-- **28** Fix bug with reverse that causes duplicate vehicle images
-- Devise and implement score system
-- Create second level
+- **28** Add neutral vehicles
+- **29** Devise and implement score system
+- **30** Create second level
+- Fix bug with reverse that causes duplicate vehicle images
 - Add smooth animation to vehicle maneuvers
 - Implement 'car-like' behavior with acceleration
 - Add various road types
