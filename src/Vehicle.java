@@ -2,6 +2,10 @@ import jig.Entity;
 import jig.ResourceManager;
 import jig.Vector;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A class representing a simple vehicle that exists on a given tile based world.
  * Through a set of basic methods the vehicle can be navigated through the world, only making movements onto valid
@@ -13,7 +17,7 @@ import jig.Vector;
  */
 public class Vehicle extends Entity {
 
-	private Tile[][] world;
+	Tile[][] world;
 	Vector velocity;
 	int direction;
 
@@ -292,4 +296,64 @@ public class Vehicle extends Entity {
 		translate(velocity);
 	}
 
+
+	// DIJKSTRA'S
+
+	Map<Tile, Integer> pathfind(Tile goal, float speed) {
+		ArrayList<Tile> queue;
+		Tile u;
+		Map<Tile, Integer> d, pi;
+
+		d = new HashMap<>();
+		pi = new HashMap<>();
+		queue = new ArrayList<>();
+		for (int y = 0; y < 16; y++) {
+			for (int x = 0; x < 24; x++) {
+				// initialize single source
+				d.putIfAbsent(world[x][y], 1000);
+				pi.putIfAbsent(world[x][y], -1);
+
+				// initialize queue with all tiles in graph
+				queue.add(world[x][y]);
+			}
+		}
+		// initialize single source, destination goal has a path cost of 0
+		d.put(goal, 0);
+
+		while(!queue.isEmpty()) {
+			u = extractMin(queue, d);
+			queue.remove(u);
+			// check the four neighbors
+			for (int i = 0; i < 4; i++) {
+				// relax
+				Tile v = u.getNeighbor(i);
+				if (v != null && v.getType() != Tile.LAND_TYPE) {
+					if (d.get(v) > (d.get(u) + u.getEdgeWeight(i))) {
+						d.put(v, d.get(u) + u.getEdgeWeight(i));
+						pi.put(v, (i + 2) % 4);
+					}
+				}
+			}
+		}
+		return pi;
+	}
+
+	/**
+	 * Gets the tile with the lowest path cost from an existing ArrayList queue of Tiles.
+	 *
+	 * Used in Dijkstra's to pick the next vertex to visit.
+	 *
+	 * @param queue An ArrayList of Tiles to search over
+	 * @param d A Map of Tiles to path costs
+	 * @return The Tile object with the lowest weight attribute
+	 */
+	private Tile extractMin(ArrayList<Tile> queue, Map<Tile, Integer> d) {
+		Tile min = queue.get(0);
+		for (Tile t : queue) {
+			if (d.get(t) < d.get(min)) {
+				min = t;
+			}
+		}
+		return min;
+	}
 }
