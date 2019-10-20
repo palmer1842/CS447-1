@@ -20,15 +20,11 @@ public class Tile extends Entity {
 	private Tile southNeighbor;
 	private Tile westNeighbor;
 
-	private String id;
 	private int type;
 	private int weight;
 
 	Tile(int type, int x, int y) {
 		super((x) * 50 + 25, (y) * 50 + 25);
-
-		id = "" + x + "." + y;
-		System.out.println(id);
 
 		switch(type) {
 			case LAND_TYPE:
@@ -77,10 +73,6 @@ public class Tile extends Entity {
 			case Vehicle.WEST: return westNeighbor;
 			default: return null;
 		}
-	}
-
-	String getID() {
-		return id;
 	}
 
 	int getType() {
