@@ -33,6 +33,10 @@ public class CopsAndRobbers extends StateBasedGame {
 	static final String ROBBER_EAST_RSC = "resource/robber/RobberVehicleE.png";
 	static final String ROBBER_SOUTH_RSC = "resource/robber/RobberVehicleS.png";
 	static final String ROBBER_WEST_RSC = "resource/robber/RobberVehicleW.png";
+	static final String ARROW_NORTH_RSC = "resource/arrow/ArrowNorth.png";
+	static final String ARROW_EAST_RSC = "resource/arrow/ArrowEast.png";
+	static final String ARROW_SOUTH_RSC = "resource/arrow/ArrowSouth.png";
+	static final String ARROW_WEST_RSC = "resource/arrow/ArrowWest.png";
 
 	Tile[][] world = new Tile[24][16];
 	boolean robberGame;
@@ -66,6 +70,10 @@ public class CopsAndRobbers extends StateBasedGame {
 		ResourceManager.loadImage(ROBBER_EAST_RSC);
 		ResourceManager.loadImage(ROBBER_SOUTH_RSC);
 		ResourceManager.loadImage(ROBBER_WEST_RSC);
+		ResourceManager.loadImage(ARROW_NORTH_RSC);
+		ResourceManager.loadImage(ARROW_EAST_RSC);
+		ResourceManager.loadImage(ARROW_SOUTH_RSC);
+		ResourceManager.loadImage(ARROW_WEST_RSC);
 	}
 
 	public static void main(String[] args) {
