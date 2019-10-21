@@ -1,0 +1,41 @@
+## Resolved Issues ##
+
+- **1** Create basic runnable game application
+- **2** Add basic tiles to build grid
+- **3** Add vehicle entity
+- **4** Implement discrete vehicle movement on the grid
+- **5** Rotate vehicle to match direction of travel 
+- **6** Add property to roads to restrict movement
+- **7** Fix grid movement to be only on tile centers
+- **9** Implement 'car-like' controls with directions relative to
+  Vehicle
+- **10** Add improved system to keep vehicle on roads using tile
+  metadata
+- **11** Add second vehicle - cop and robber
+- **12** Add collision detection between vehicles 
+- **13** Add title screen
+- **14** Add launch screen
+- **15** Add game over screen, trigger after collision
+- **16** Add safe house
+- **17** Add win screen, trigger when robber reaches safe house
+- **18** Add second game mode to play as cop
+- **19** Add functionality to set vehicle starting orientation
+- **20** Fix buggy reverse movement
+- **21** Better integrate world and vehicle to simplify method calls
+- **22** Fix bug where title screen switches too quickly after restart
+- **23** Refactor and clean up code
+- **24** Add weights to tiles for Dijkstra's
+- **25** Implement Dijkstra's for Cop AI
+- **26** Implement Dijkstra's for Robber AI
+- **27** Correctly handle all win/loss conditions for both game modes
+- **28** Add neutral vehicles
+- **29** Devise and implement score system
+- **30** Create second level
+
+## Open Issues ##
+
+- Fix bug with reverse that causes duplicate vehicle images
+- Add smooth animation to vehicle maneuvers
+- Implement 'car-like' behavior with acceleration
+- Add various road types
+- **8** Smooth movement of Vehicle between tiles
