@@ -26,8 +26,11 @@ public class WinState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+		CopsAndRobbers cap = (CopsAndRobbers)game;
+
 		g.drawString("You win!", 555, 300);
-		g.drawString("Press Space to restart", 490, 320);
+		g.drawString("Final Score: " + java.lang.Math.round(cap.score), 515, 320);
+		g.drawString("Press Space to restart", 490, 360);
 	}
 
 	@Override
