@@ -30,10 +30,10 @@
 - **27** Correctly handle all win/loss conditions for both game modes
 - **28** Add neutral vehicles
 - **29** Devise and implement score system
+- **30** Create second level
 
 ## Open Issues ##
 
-- **30** Create second level
 - Fix bug with reverse that causes duplicate vehicle images
 - Add smooth animation to vehicle maneuvers
 - Implement 'car-like' behavior with acceleration

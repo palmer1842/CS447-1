@@ -21,7 +21,9 @@ public class WinState extends BasicGameState {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
+		CopsAndRobbers cap = (CopsAndRobbers)game;
 
+		cap.level = 1;
 	}
 
 	@Override

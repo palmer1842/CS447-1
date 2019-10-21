@@ -4,12 +4,11 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class PlayState extends BasicGameState {
 
-	private int[][] worldMap = {
+	private int[][] worldMap1 = {
 		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
 		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
@@ -28,24 +27,43 @@ public class PlayState extends BasicGameState {
 		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
 	};
 
-//	private int[][] worldMap = {
-//		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-//		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-//		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-//		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-//		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-//		{ 0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,0 },
-//		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,0,0,1,1,0 },
-//		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-//		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0 },
-//		{ 0,1,1,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-//		{ 0,1,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-//		{ 0,1,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0 },
-//		{ 0,1,1,1,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
-//		{ 0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
-//		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0 },
-//		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
-//	};
+	private int[][] worldMap2ALT = {
+		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0 },
+		{ 0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,2,0,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+	};
+
+	private int[][] worldMap2 = {
+		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0 },
+		{ 0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0 },
+		{ 0,1,1,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0 },
+		{ 0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+		{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+	};
 
 	private Vehicle player;
 	private Vehicle computer;
@@ -62,8 +80,19 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		CopsAndRobbers cap = (CopsAndRobbers)game;
+		CopsAndRobbers cap = (CopsAndRobbers) game;
 
+		cap.level = 1;
+	}
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) {
+		CopsAndRobbers cap = (CopsAndRobbers) game;
+
+		int[][] worldMap = worldMap1;
+		if (cap.level == 2) {
+			worldMap = worldMap2;
+		}
 		// build tile array based on 'worldMap'
 		for (int y = 0; y < 16; y++) {
 			for (int x = 0; x < 24; x++) {
@@ -83,11 +112,6 @@ public class PlayState extends BasicGameState {
 				if (x > 0) { cap.world[x][y].setWestNeighbor(cap.world[x - 1][y]); }
 			}
 		}
-	}
-
-	@Override
-	public void enter(GameContainer container, StateBasedGame game) {
-		CopsAndRobbers cap = (CopsAndRobbers) game;
 
 		winTimer = 200;	// 200 millisecond delay after winning to allow animations to finish
 		dijkstraToggle = false;
@@ -139,7 +163,13 @@ public class PlayState extends BasicGameState {
 			cap.enterState(CopsAndRobbers.GAMEOVERSTATE);
 		}
 		else if (collisionTest != null) {
-			cap.enterState(CopsAndRobbers.WINSTATE);
+			if (cap.level == 1) {
+				cap.level = 2;
+				cap.enterState(CopsAndRobbers.LAUNCHSTATE);
+			}
+			else {
+				cap.enterState(CopsAndRobbers.WINSTATE);
+			}
 		}
 
 		// Decrease score by 10% if player collides with neutral driver
@@ -153,7 +183,13 @@ public class PlayState extends BasicGameState {
 		if (cap.robberGame && player.getTile().getType() == Tile.SAFE_HOUSE_TYPE) {
 			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
 			if (winTimer <= 0) {
-				cap.enterState(CopsAndRobbers.WINSTATE);
+				if (cap.level == 1) {
+					cap.level = 2;
+					cap.enterState(CopsAndRobbers.LAUNCHSTATE);
+				}
+				else {
+					cap.enterState(CopsAndRobbers.WINSTATE);
+				}
 			}
 		}
 		// If cop, player loses
@@ -167,6 +203,12 @@ public class PlayState extends BasicGameState {
 		// get input for player
 		if (player.isCentered()) {
 			Input input = container.getInput();
+
+			// check for level skip cheat code
+			if (input.isKeyPressed(Input.KEY_L)) {
+				cap.level = 2;
+				cap.enterState(CopsAndRobbers.LAUNCHSTATE);
+			}
 
 			// toggle for path finding overlay
 			if (input.isKeyPressed(Input.KEY_T)) {
