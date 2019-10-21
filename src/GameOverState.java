@@ -28,6 +28,7 @@ public class GameOverState extends BasicGameState {
 		CopsAndRobbers cap = (CopsAndRobbers)game;
 		timer = 4000;
 		cap.score /= 2;
+		cap.level = 1;
 	}
 
 	@Override
