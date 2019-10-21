@@ -6,7 +6,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Basic runnable game.
+ * A basic game of Cops and Robbers
+ *
+ * The player can choose to play as a Cop or a Robber. As a cop, you must reach the safe house before being caught by
+ * the cop. As the cop, your only goal is to catch the Robber. The computer pursues their goal via path finding
+ * implemented with Dijkstra's Algorithm.
  *
  * @author Jake Palmer
  */

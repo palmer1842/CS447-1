@@ -4,6 +4,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The transition state from the Title screen to the main game play state.
+ *
+ * A message is displayed indicating the players objective and current level.
+ *
+ * @author Jake Palmer
+ */
 public class LaunchState extends BasicGameState {
 
 	private int timer;
