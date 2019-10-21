@@ -25,7 +25,9 @@ public class GameOverState extends BasicGameState {
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
+		CopsAndRobbers cap = (CopsAndRobbers)game;
 		timer = 4000;
+		cap.score /= 2;
 	}
 
 	@Override
@@ -37,6 +39,7 @@ public class GameOverState extends BasicGameState {
 		else {
 			g.drawString("The robber escaped!", 500, 300);
 		}
+		g.drawString("Final Score: " + java.lang.Math.round(cap.score), 515, 320);
 	}
 
 	@Override

@@ -40,6 +40,7 @@ public class CopsAndRobbers extends StateBasedGame {
 
 	Tile[][] world = new Tile[24][16];
 	boolean robberGame;
+	double score;
 
 	public CopsAndRobbers(String name) {
 		super(name);

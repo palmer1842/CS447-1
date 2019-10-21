@@ -103,6 +103,8 @@ public class PlayState extends BasicGameState {
 		}
 
 		neutral = new Vehicle(1, 14, Vehicle.EAST, true, cap.world);
+
+		cap.score = 100;
 	}
 
 	@Override
@@ -140,13 +142,21 @@ public class PlayState extends BasicGameState {
 			cap.enterState(CopsAndRobbers.WINSTATE);
 		}
 
+		// Decrease score by 10% if player collides with neutral driver
+		collisionTest = player.collides(neutral);
+		if (collisionTest != null) {
+			cap.score = cap.score * 0.9d;
+		}
+
 		// Safe house 'collision' check
+		// If robber, player wins
 		if (cap.robberGame && player.getTile().getType() == Tile.SAFE_HOUSE_TYPE) {
 			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
 			if (winTimer <= 0) {
 				cap.enterState(CopsAndRobbers.WINSTATE);
 			}
 		}
+		// If cop, player loses
 		if (!cap.robberGame && computer.getTile().getType() == Tile.SAFE_HOUSE_TYPE) {
 			winTimer -= delta;	// wait a moment before transitioning to allow player to see car enter safe house
 			if (winTimer <= 0) {
@@ -226,6 +236,9 @@ public class PlayState extends BasicGameState {
 		player.drive(delta);
 		computer.drive(delta);
 		neutral.drive(delta);
+
+		// decrease score slowly as time goes on
+		cap.score = cap.score * .999d;
 	}
 
 	private void renderPI(Map<Tile, Integer> pi, Graphics g) {
