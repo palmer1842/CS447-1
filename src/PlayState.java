@@ -6,6 +6,22 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import java.util.Map;
 
+/**
+ * The primary state of the game where game play takes place.
+ *
+ * Each time the state is entered, a Tile array is loaded based on the current level of the game, and other variables
+ * are initialized.
+ * During game play, the state makes collision checks and checks to see if the vehicles are centered on a tile.
+ * If they are centered, input is taken from the player and/or path finding and movement is performed for the computer.
+ *
+ * The player's score starts at a max of 100, and can be decreased depending on how well the player performs.
+ * The score decreases as follows:
+ * 		-.001% for each frame. This causes the score to gradually decrease as time goes on.
+ * 		-10% for colliding with the neutral vehicle.
+ * 		-50% for losing the game, either by getting caught or failing to catch the robber.
+ *
+ * @author Jake Palmer
+ */
 public class PlayState extends BasicGameState {
 
 	private int[][] worldMap1 = {
@@ -283,6 +299,11 @@ public class PlayState extends BasicGameState {
 		cap.score = cap.score * .999d;
 	}
 
+	/**
+	 * Render an overlay on the map that displays the results of path finding via Dijkstra's.
+	 * @param pi
+	 * @param g
+	 */
 	private void renderPI(Map<Tile, Integer> pi, Graphics g) {
 		for (Map.Entry<Tile, Integer> entry : pi.entrySet()) {
 			switch(entry.getValue()) {
