@@ -33,6 +33,8 @@ public class LaunchState extends BasicGameState {
 			g.drawString("You are a cop!", 530, 300);
 			g.drawString("Catch the robber before they reach the safe house", 385, 320);
 		}
+
+		g.drawString("Level " + cap.level, 555, 360);
 	}
 
 	@Override
